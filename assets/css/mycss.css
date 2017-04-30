@@ -1,0 +1,12 @@
+.text-center {
+  text-align: center;
+}
+tr.text-center {
+  text-align: center;
+}
+
+.modal-backdrop {
+    position: fixed;
+    z-index: 10!important;
+    background-color: #000;
+}
