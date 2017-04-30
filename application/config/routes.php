@@ -55,9 +55,14 @@ $route['translate_uri_dashes'] = FALSE;
 
 // admin interface
 $route['admin']					    				= 'Dashboard1';
+
 $route['user_list']									= 'User_c';
-$route['user_form']					 				= 'User_c/User_form';
-$route['user_form_edit/(:num)']            = 'User_c/User_edit/$1';
+$route['user_form']					 				= 'User_c/user_form';
+$route['user_form_edit/(:num)']     = 'User_c/user_edit/$1';
+
+$route['user_type_list']									= 'User_type_c';
+$route['user_type_form']					 				= 'User_type_c/user_type_form';
+$route['user_type_form_edit/(:num)']      = 'User_type_c/user_type_edit/$1';
 
 $route['cabang_list']               = 'Cabang_c';
 $route['cabang_form']               = 'Cabang_c/cabang_form';

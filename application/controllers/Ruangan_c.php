@@ -4,25 +4,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   class Ruangan_c extends My_controller{
 
+    public $load_plugin_head;
+    public $load_plugin_foot;
+
     public function __construct()
     {
       parent::__construct();
         $this->load->model('Ruangan_m');
+
+        $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
+        $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
+
+        $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
+        $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
+
     }
 
     function index()
     {
-      $plugin_head[] = $this->plugin_datatable_css();
-      $plugin_head[] = $this->plugin_datetime_css();
-      $plugin_head[] = $this->plugin_select2_css();
-
-      $javascript[] = $this->plugin_datatable_js();
-      $javascript[] = $this->plugin_datetime_js();
-      $javascript[] = $this->plugin_select2_js();
-
-  		$this->get_header($plugin_head);
-      // $this->ruangan_list();
-      $this->get_footer($javascript);
+  		$this->get_header($this->load_plugin_head);
+      $this->ruangan_list();
+      $this->get_footer();
     }
 
     function ruangan_list()
@@ -128,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       );
       $building_details   = $this->select_config('buildings', $where_building_id)->result();
 
-      $this->get_page($data, $action, $this->load_plugin_head);
+      $this->get_page($data, $action);
     }
 
     function update_ruangan(){

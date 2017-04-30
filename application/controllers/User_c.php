@@ -19,8 +19,14 @@ class User_c extends MY_Controller{
   }
 
   function user_list(){
+    $page_bar['data'][] = array(
+                              'title_page' => 'User List',
+                              'url'        => 'user_list'
+                            );
 
-    $data = array('users'     => $this->User_model->select_user_list($this->where_branch_active),
+    $data = array(
+                  'title_page' 	=> $this->page_bar($page_bar),
+                  'users'     => $this->User_model->select_user_list($this->where_branch_active),
                   'action'    => "user_form",
                 );
     $this->load->view('master/user_master/user_list_v', $data);
@@ -28,16 +34,30 @@ class User_c extends MY_Controller{
 
   function user_form()
   {
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User List',
+                              'url'        => 'user_list'
+                            );
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User Form',
+                              'url'        => 'user_form'
+                            );
+
     $where = '';
     $where_user_id = '';
     $url   = "master/user_master/user_form";
-    $data  = array('action_add'   => "User_c/user_add",
+
+    $data  = array(
+                   'title_page' 	=> $this->page_bar($page_bar),
+                   'action_add'   => "User_c/user_add",
                    'action_close' => "User_c",
                    'user_details' => false,
                    'user_type'    => $this->select_config('user_type', $this->where_branch_active),
                    'branches'     => $this->select_config('branches', $this->where_branch_active)
                     );
-    $this->get_page($data,$url);
+    $this->get_page($data, $url, $this->load_plugin_head);
   }
 
   function user_add(){
@@ -88,16 +108,29 @@ class User_c extends MY_Controller{
   }
 
   function user_edit($id){
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User List',
+                              'url'        => '../user_list'
+                            );
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User Form',
+                              'url'        => '../user_form_edit/'.$id
+                            );
+
     $where = '';
     $where_user_id  = "WHERE user_id = '$id'";
     $action         = "master/user_master/user_form";
-    $data  = array('action_add'     => "User_c/user_update",
+    $data  = array(
+                   'title_page' 	=> $this->page_bar($page_bar),
+                   'action_add'     => "User_c/user_update",
                    'action_close'   => "User_c",
                    'user_details'   => $this->select_config('user', $where_user_id)->row(),
                    'user_type'  => $this->select_config('user_type', $where),
                    'branches'     => $this->select_config('branches', $where)
                     );
-    $this->get_page($data, $action);
+    $this->get_page($data, $action, $this->load_plugin_head);
   }
 
   function user_update(){

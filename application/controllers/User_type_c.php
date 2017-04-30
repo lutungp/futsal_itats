@@ -19,7 +19,15 @@ class user_type_c extends MY_Controller{
   }
 
   function user_type_list(){
-    $data = array('user_type'     => $this->User_type_model->select_user_type_list(),
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User List',
+                              'url'        => 'user_list'
+                            );
+
+    $data = array(
+                  'title_page' 	=> $this->page_bar($page_bar),
+                  'user_type'     => $this->User_type_model->select_user_type_list(),
                   'action'    => "user_type_c/user_type_form",
                 );
     $this->load->view('master/user_type_master/user_type_list_v', $data);
@@ -27,10 +35,23 @@ class user_type_c extends MY_Controller{
 
   function user_type_form()
   {
+    $page_bar['data'][] = array(
+                              'title_page' => 'User List',
+                              'url'        => 'user_list'
+                            );
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User Form',
+                              'url'        => '../user_type_form'
+                            );
+
     $where = '';
     $where_user_type_id = '';
     $url   = "master/user_type_master/user_type_form";
-    $data  = array('action_add'         => "user_type_c/user_type_add",
+
+    $data  = array(
+                   'title_page' 	=> $this->page_bar($page_bar),
+                   'action_add'         => "user_type_c/user_type_add",
                    'action_close'       => "user_type_c",
                    'user_type_details'  => false,
                    'sidebar_menu'       => $this->select_config('sidebar', $where)->result()

@@ -11,12 +11,10 @@ class Dashboard1 extends My_controller {
 
 	public function index()
 	{
-			$this->load->view('template/head_admin_interface');
-			$this->load->view('template/topbar');
-			$this->sidebar();
-			$this->load->view('dashboard1');;
-			$this->load->view('template/js_admin_interface');
-			$this->load->view('template/foot');
+			$this->get_header();
+			// $this->sidebar();
+			$this->load->view('dashboard1');
+			$this->get_footer($this->plugin_foot);
 	}
 
 	function popmodal_log_out()

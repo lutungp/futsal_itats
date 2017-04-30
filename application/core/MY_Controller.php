@@ -4,8 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller{
 
   public $where_branch_active;
-  public $load_plugin_js;
-  public $load_plugin_css;
 
   public function __construct()
   {
@@ -38,84 +36,6 @@ class MY_Controller extends CI_Controller{
       redirect(base_url('Auth'));
     }
   }
-
-  // css plugins
-    function plugin_datatable_css()
-    {
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
-
-      return $this->load_plugin_css;
-    }
-
-    function plugin_datetime_css()
-    {
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/fullcalendar/fullcalendar.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/css/clockface.css";
-      return $this->load_plugin_css;
-    }
-
-    function plugin_morris_css()
-    {
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/morris/morris.css";
-
-      return $this->load_plugin_css;
-    }
-
-    function plugin_select2_css()
-    {
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2.min.css";
-      $this->load_plugin_css[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css";
-      return $this->load_plugin_css;
-    }
-
-  // javascript plugins
-    function plugin_datatable_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js";
-
-      return $this->load_plugin_js;
-    }
-
-    function plugin_datetime_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/fullcalendar/fullcalendar.min.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js";
-      return $this->load_plugin_js;
-    }
-
-    function plugin_moment_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/moment.min.js";
-      return $this->load_plugin_js;
-    }
-
-    function plugin_morris_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/morris/morris.min.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/morris/raphael-min.js";
-      return $this->load_plugin_js;
-    }
-
-    function plugin_conterup_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/counterup/jquery.waypoints.min.js";
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/counterup/jquery.counterup.min.js";
-      return $this->load_plugin_js;
-    }
-
-    function plugin_select2_js()
-    {
-      $this->load_plugin_js[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/select2/js/select2.full.min.js";
-      return $this->load_plugin_js;
-    }
 
   function page_bar($page_name = null)
   {
@@ -168,17 +88,15 @@ class MY_Controller extends CI_Controller{
 
   function get_header($load_plugin_head = null){
     $data['plugin_head'] = $load_plugin_head;
-    // $this->is_logged_in();
-    // $this->load->view('template/head_admin_interface', $data);
-		// $this->load->view('template/topbar');
-    // $this->sidebar();
+    $this->is_logged_in();
+    $this->load->view('template/head_admin_interface', $data);
+		$this->load->view('template/topbar');
+    $this->sidebar();
   }
 
-  function get_footer($load_plugin_foot = null){
-    $data['plugin_foot'] = $load_plugin_foot;
-
-    // $this->load->view('template/js_admin_interface', $data);
-		// $this->load->view('template/foot');
+  function get_footer(){
+    $this->load->view('template/js_admin_interface');
+		$this->load->view('template/foot');
   }
 
   function get_header_customer()
@@ -206,11 +124,11 @@ class MY_Controller extends CI_Controller{
     return $data;
   }
 
-  function get_page($data, $url, $load_plugin_head = null){
-    $data['plugin_head'] = $load_plugin_head;
-
+  function get_page($data = null, $url = null, $load_plugin_head = null){
     $this->is_logged_in();
+    $data['plugin_head'] = $load_plugin_head;
     $this->session->userdata('sidebar_id', 1);
+
     $this->load->view('template/head_admin_interface', $data);
     $this->load->view('template/topbar');
     $this->sidebar();
@@ -240,7 +158,5 @@ class MY_Controller extends CI_Controller{
              }
 
   }
-
-
 
 }
