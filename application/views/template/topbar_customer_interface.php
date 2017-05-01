@@ -1,8 +1,8 @@
 <header class="page-header">
     <nav class="navbar mega-menu" role="navigation">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-left: 16px;">
             <!-- BEGIN HEADER MENU -->
-            <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse">
+            <div class="nav-collapse collapse navbar-collapse navbar-responsive-collapse" style="margin-top: 35px;">
                 <ul class="nav navbar-nav">
                     <li class="dropdown dropdown-fw  active open selected">
                         <a href="javascript:;" class="text-uppercase">
