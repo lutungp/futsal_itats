@@ -9,9 +9,11 @@
 </div>
 <div class="modal-body">
   <div class="form-group">
+    <input type="hidden" name="i_building" value="<?php echo $building_id?>">
+    <input type="hidden" name="i_branch" value="<?php echo $branch_id?>">
     <label for="">Pilih Tanggal</label>
     <div class="input-group date form_datetime" data-date="">
-        <input type="text" id="i_tangggal" name="i_tangggal" size="16" readonly class="form-control">
+        <input type="text" id="i_tangggal" name="i_tangggal" size="16" readonly class="form-control" required="true">
         <span class="input-group-btn">
             <button class="btn default date-reset" type="button">
                 <i class="fa fa-times"></i>
@@ -35,8 +37,8 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button type="button" class="btn btn-primary">Save changes</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+  <button id="btn_simpan" type="button" class="btn btn-primary">Simpan</button>
 </div>
 <script type="text/javascript">
 
@@ -116,4 +118,30 @@
     $("p").html("<b>Hour Difference:</b> " + hourDiff )
   }
 
+  var bookingstorage = [];
+  var i_building = '';
+  var i_branch = '';
+  var i_tangggal = '';
+  var i_jam_1 = '';
+  var i_jam_2 = '';
+
+  $("#btn_simpan").on('click', function() {
+      i_building = $('#i_building').val();
+      i_branch = $('#i_branch').val();
+      i_tangggal = $('#i_tangggal').val();
+      i_jam_1 = $('#i_jam_1').val();
+      i_jam_2 = $('#i_jam_2').val();
+
+      var booking_detail = {
+          'i_building'  : i_building,
+          'i_branch'    : i_branch,
+          'i_tangggal'  : i_tangggal,
+          'i_jam_1'     : i_jam_1,
+          'i_jam_2'     : i_jam_2
+      }
+
+      bookingstorage.push(booking_detail);
+
+      $('#booking_popmodal').find('.modal-content').load(url);
+    });
 </script>

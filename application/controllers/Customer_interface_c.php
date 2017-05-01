@@ -66,9 +66,10 @@ class Customer_interface_c extends MY_Controller{
      );
 
      $data = array(
-                    'buildings' => $this->select_config_array('buildings', $where_building_and_branch_id)->row(),
+                    'buildings'   => $this->select_config_array('buildings', $where_building_and_branch_id)->row(),
                     'building_id' => $building,
-                    'branch_id' => $branch
+                    'branch_id'   => $branch,
+                    'action'      => "Customer_interface_c/save_booking"
                   );
 
       $this->load->view('customer_interface/popmodal_booking', $data);
@@ -109,6 +110,15 @@ class Customer_interface_c extends MY_Controller{
 
 
     echo json_encode($data);
+  }
+
+  function save_booking()
+  {
+    $i_building   = $this->input->post('i_building');
+    $i_branch     = $this->input->post('i_branch');
+    $i_tangggal   = $this->input->post('i_tangggal');
+    $i_jam_1      = $this->input->post('i_jam_1');
+    $i_jam_2      = $this->input->post('i_jam_2');
   }
 
 }
