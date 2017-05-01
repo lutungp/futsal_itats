@@ -11,12 +11,19 @@
          });
 
          $('#timepicker3').timepicker({
-             format: 'LT'
+            defaultTime: 'value',
+            minuteStep: 1,
+            disableFocus: true,
+            template: 'dropdown',
+            showMeridian:false
          });
          $('#timepicker4').timepicker({
-             format: 'LT'
+             defaultTime: 'value',
+             minuteStep: 1,
+             disableFocus: true,
+             template: 'dropdown',
+             showMeridian:false
          });
-
        });
       </script>
     </body>

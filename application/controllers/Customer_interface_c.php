@@ -83,10 +83,31 @@ class Customer_interface_c extends MY_Controller{
     $where_building_and_branch_id = array(
         'building_booking_building' => $building,
         'building_booking_branch'   => $branch,
-        'building_booking_date'     => $i_tangggal
+        'building_booking_date_for' => $i_tangggal
       );
 
-    $data['booking'] = $this->Global_m->select_config_array('building_booking', $where_building_and_branch_id)->row();
+    $where_branch_id = array('branch_id' => $branch );
+
+    $q_booking = $this->Global_m->select_config_array('building_booking', $where_building_and_branch_id);
+    $r_branch  = $this->Global_m->select_config_array('branches', $where_branch_id)->row();
+
+    foreach ($q_booking->result() as $r_booking) {
+      $data['booking'] = array(
+                                  'building_booking_time_1' => $r_booking->building_booking_time_1,
+                                  'building_booking_time_2' => $r_booking->building_booking_time_2
+                                );
+
+    }
+
+    $data['open_time'] = array(
+      'branch_hour_1' => date("H:m", $r_branch->branch_hour_1),
+      'branch_hour_2' => date("H:m", $r_branch->branch_hour_2),
+      'strbranch_hour_1' => $r_branch->branch_hour_1,
+      'strbranch_hour_2' => $r_branch->branch_hour_2
+    );
+
+
+
     echo json_encode($data);
   }
 

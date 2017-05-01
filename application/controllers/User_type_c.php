@@ -9,13 +9,18 @@ class user_type_c extends MY_Controller{
       $this->load->model('User_type_model');
       $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
       $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
+
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js";
+
   }
 
   function index()
   {
     $this->get_header($this->load_plugin_head);
     $this->user_type_list();
-    $this->get_footer();
+    $this->get_footer($this->load_plugin_foot);
   }
 
   function user_type_list(){
@@ -36,12 +41,12 @@ class user_type_c extends MY_Controller{
   function user_type_form()
   {
     $page_bar['data'][] = array(
-                              'title_page' => 'User List',
-                              'url'        => 'user_list'
+                              'title_page' => 'User Type List',
+                              'url'        => '../user_list'
                             );
 
     $page_bar['data'][] = array(
-                              'title_page' => 'User Form',
+                              'title_page' => 'User Type Form',
                               'url'        => '../user_type_form'
                             );
 
@@ -89,11 +94,23 @@ class user_type_c extends MY_Controller{
     redirect('user_type_c');
   }
 
-  function user_type_edit($id){
+  function user_type_edit($id)
+  {
+    $page_bar['data'][] = array(
+                              'title_page' => 'User Type List',
+                              'url'        => '../user_list'
+                            );
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'User Type Form',
+                              'url'        => '../user_type_form_edit/'.$id
+                            );
     $where = '';
     $where_user_type_id  = "WHERE user_type_id = '$id'";
     $action         = "master/user_type_master/user_type_form";
-    $data  = array('action_add'     => "user_type_c/user_type_update",
+    $data  = array(
+                   'title_page' 	=> $this->page_bar($page_bar),
+                   'action_add'     => "user_type_c/user_type_update",
                    'action_close'   => "user_type_c",
                    'user_type_details'   => $this->select_config('user_type', $where_user_type_id)->row(),
                    'user_type'  => $this->select_config('user_type', $where),

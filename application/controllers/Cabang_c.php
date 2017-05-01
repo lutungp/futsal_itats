@@ -17,13 +17,23 @@ class Cabang_c extends MY_Controller{
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css";
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css";
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/css/clockface.css";
+
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js";
+
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/js/clockface.js";
+
   }
 
   function index()
   {
     $this->get_header($this->load_plugin_head);
     $this->cabang_list();
-    $this->get_footer();
+    $this->get_footer($this->load_plugin_foot);
   }
 
   function cabang_list(){
@@ -65,7 +75,7 @@ class Cabang_c extends MY_Controller{
                    'action_close' => "Cabang_c",
                    'cabang'    => $this->select_config('branches', $where)
                     );
-    $this->get_page($data,$url);
+    $this->get_page($data,$url, $this->load_plugin_head, $this->load_plugin_foot);
   }
 
   function cabang_add(){
@@ -112,7 +122,7 @@ class Cabang_c extends MY_Controller{
                    'cabang_details'   => $this->select_config('branches', $where_branch_id)->row()
                     );
 
-    $this->get_page($data, $action);
+    $this->get_page($data, $action, $this->load_plugin_head, $this->load_plugin_foot);
 
   }
 
@@ -123,9 +133,7 @@ class Cabang_c extends MY_Controller{
     $i_address = $this->input->post('i_address');
     $i_email = $this->input->post('i_email');
     $i_hour_1 = $this->input->post('i_hour_1');
-    $i_hour_1 = date("H:i", strtotime($i_hour_1));
     $i_hour_2 = $this->input->post('i_hour_2');
-    $i_hour_2 = date("H:i", strtotime($i_hour_2));
 
 
     $data = array(

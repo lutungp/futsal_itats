@@ -5,6 +5,9 @@ class MY_Controller extends CI_Controller{
 
   public $where_branch_active;
 
+  public $load_plugin_head;
+  public $load_plugin_foot;
+
   public function __construct()
   {
     parent::__construct();
@@ -36,6 +39,21 @@ class MY_Controller extends CI_Controller{
       redirect(base_url('Auth'));
     }
   }
+
+
+    function sidebar()
+    {
+      $data['sidebar_lv1'] = $this->Global_m->sidebar_lv1()->result();
+      $data['controller']=$this;
+      error_reporting(0);
+      $this->load->view('template/sidebar', $data);
+    }
+
+    function sidebar_lv2($sidebar_lv1){
+      $user_type = $this->session->userdata('user_type');
+      $data = $this->Global_m->sidebar_lv2($sidebar_lv1, $user_type);
+      return $data;
+    }
 
   function page_bar($page_name = null)
   {
@@ -82,11 +100,13 @@ class MY_Controller extends CI_Controller{
     $query = $this->Global_m->update_config($table, $data,$where);
   }
 
-  function delete_config($table, $where){
+  function delete_config($table, $where)
+  {
     $query = $this->Global_m->delete_config($table,$where);
   }
 
-  function get_header($load_plugin_head = null){
+  function get_header($load_plugin_head = null)
+  {
     $data['plugin_head'] = $load_plugin_head;
     $this->is_logged_in();
     $this->load->view('template/head_admin_interface', $data);
@@ -94,8 +114,10 @@ class MY_Controller extends CI_Controller{
     $this->sidebar();
   }
 
-  function get_footer(){
-    $this->load->view('template/js_admin_interface');
+  function get_footer($load_plugin_foot = null)
+  {
+    $data['plugin_foot'] = $load_plugin_foot;
+    $this->load->view('template/js_admin_interface', $data);
 		$this->load->view('template/foot');
   }
 
@@ -110,30 +132,18 @@ class MY_Controller extends CI_Controller{
 		$this->load->view('template/foot_customer_interface');
   }
 
-  function sidebar()
-  {
-    $data['sidebar_lv1'] = $this->Global_m->sidebar_lv1()->result();
-    $data['controller']=$this;
-    error_reporting(0);
-    $this->load->view('template/sidebar', $data);
-  }
 
-  function sidebar_lv2($sidebar_lv1){
-    $user_type = $this->session->userdata('user_type');
-    $data = $this->Global_m->sidebar_lv2($sidebar_lv1, $user_type);
-    return $data;
-  }
-
-  function get_page($data = null, $url = null, $load_plugin_head = null){
+  function get_page($data = null, $url = null, $load_plugin_head = null, $load_plugin_foot = null){
     $this->is_logged_in();
     $data['plugin_head'] = $load_plugin_head;
+    $data['plugin_foot'] = $load_plugin_foot;
     $this->session->userdata('sidebar_id', 1);
 
     $this->load->view('template/head_admin_interface', $data);
     $this->load->view('template/topbar');
     $this->sidebar();
     $this->load->view($url, $data);
-    $this->load->view('template/js_admin_interface');
+    $this->load->view('template/js_admin_interface', $data);
     $this->load->view('template/foot');
   }
 

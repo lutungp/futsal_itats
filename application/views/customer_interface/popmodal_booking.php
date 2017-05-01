@@ -39,18 +39,13 @@
   <button type="button" class="btn btn-primary">Save changes</button>
 </div>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('.form_datetime').datepicker({
-      opens: 'left'
-    });
-
-  });
 
   var building_id = "<?php echo $building_id?>";
   var branch_id   = "<?php echo $branch_id?>";
   var base_url    = "<?php echo base_url()?>";
   var i_tangggal  = $('#i_tangggal').val();
 
+  var date =  moment().format('DD/MM/YYYY');
   $.fn.get_tangggal = function(){
 
     $.ajax({
@@ -68,19 +63,35 @@
            $('#i_jam_2').select2('destroy');
            $('#i_jam_2').empty();
          }
+         var jam_buka   = data['open_time'].branch_hour_1;
+         var jam_tutup  = data['open_time'].branch_hour_2;
 
+         var strjam_buka    = data['open_time'].strbranch_hour_1;
+         var strjam_tutup   = data['open_time'].strbranch_hour_2;
 
-        $('#i_jam_1').append('<option value="0">qwert</option>');
-        $('#i_jam_2').append('<option value="0"> </option>');
+         var timeStart  = new Date(date+" "+jam_buka);
+         var timeEnd    = new Date(date+" "+jam_tutup);
 
-        // var selected = '';
-        //
-        // $('#i_jam_1').append('<option value="" '+selected+'>2</option>');
-        // $('#i_jam_1').append('<option value="" '+selected+'>2</option>');
-        // $('#i_jam_1').append('<option value="" '+selected+'>2</option>');
-        //
-        $('#i_jam_1').select2();
-        // $('#i_jam_2').select2();
+         var difference = timeEnd - timeStart;
+         difference = difference / 60 / 60 / 1000;
+
+         var booking_time = jam_buka.split(':');
+         var booking_time1 = booking_time[0];
+
+         for (var i = 0; i < difference; i++) {
+            booking_start = 0;
+            booking_start = parseInt(booking_time1)+i;
+           $('#i_jam_1').append('<option value="'+parseInt(booking_start)+'">'+parseInt(booking_start)+':00</option>');
+         }
+
+         for (var i = 0; i < difference; i++) {
+           booking_end = 0;
+           booking_end = parseInt(booking_time1)+i;
+          $('#i_jam_2').append('<option value="'+parseInt(booking_end)+'">'+parseInt(booking_end)+':00</option>');
+         }
+
+         $('#i_jam_1').select2();
+         $('#i_jam_2').select2();
       },
       error     : function(data){
         alert('error');
@@ -88,10 +99,21 @@
     });
   }
 
-  $('#i_tangggal').on('change', function(){
-    // alert();
-    $.fn.get_tangggal() ;
+  $(document).ready(function(){
+    $('.form_datetime').datepicker({
+      opens: 'left'
+    });
+    $.fn.get_tangggal();
   });
 
+  $('#i_tangggal').on('change', function(){
+    $.fn.get_tangggal();
+  });
+
+  var  hourDiff = function()
+  {
+    parseInt($("select[name='timestart']").val().split(':')[0],10) - parseInt($("select[name='timestop']").val().split(':')[0],10);
+    $("p").html("<b>Hour Difference:</b> " + hourDiff )
+  }
 
 </script>

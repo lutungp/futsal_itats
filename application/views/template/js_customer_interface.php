@@ -9,27 +9,14 @@
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')?>" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/morris/morris.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/moment.min.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/js/select2.full.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/js/clockface.js')?>" type="text/javascript"></script>
 
-
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/morris/morris.min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/morris/raphael-min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/counterup/jquery.waypoints.min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/counterup/jquery.counterup.min.js')?>" type="text/javascript"></script>
-
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/jquery.pulsate.min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/holder.js')?>" type="text/javascript"></script>
-
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/js/select2.full.min.js')?>" type="text/javascript"></script>
-
-<!-- <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js')?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')?>" type="text/javascript"></script> -->
 
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->

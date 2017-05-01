@@ -55,7 +55,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <div class="input-group bootstrap-timepicker timepicker">
-                                   <input id="timepicker3" name="i_hour_1" type="text" class="form-control" value="<?php echo date("H:i", $cabang_details->branch_hour_1)?>">
+                                   <input id="timepicker3" name="i_hour_1" type="text" class="form-control" value="<?php echo date("H:m", $cabang_details->branch_hour_1)?>">
                                    <span class="input-group-addon">
                                    <span class="glyphicon glyphicon-time"></span>
                                    </span>
@@ -65,7 +65,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <div class="input-group bootstrap-timepicker timepicker">
-                                 <input id="timepicker4" name="i_hour_2" type="text" class="form-control" value="<?php echo date("H:i", $cabang_details->branch_hour_2) ?>">
+                                 <input id="timepicker4" name="i_hour_2" type="text" class="form-control" value="<?php echo date("H:m", $cabang_details->branch_hour_2) ?>">
                                  <span class="input-group-addon">
                                  <span class="glyphicon glyphicon-time"></span>
                                  </span>
