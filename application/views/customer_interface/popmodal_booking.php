@@ -7,39 +7,42 @@
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title"><?php echo $buildings->building_name;?></h4>
 </div>
-<div class="modal-body">
-  <div class="form-group">
-    <input type="hidden" name="i_building" value="<?php echo $building_id?>">
-    <input type="hidden" name="i_branch" value="<?php echo $branch_id?>">
-    <label for="">Pilih Tanggal</label>
-    <div class="input-group date form_datetime" data-date="">
-        <input type="text" id="i_tangggal" name="i_tangggal" size="16" readonly class="form-control" required="true">
-        <span class="input-group-btn">
-            <button class="btn default date-reset" type="button">
-                <i class="fa fa-times"></i>
-            </button>
-            <button class="btn default date-set" type="button">
-                <i class="fa fa-calendar"></i>
-            </button>
-        </span>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="">Pilih Jam</label>
-    <div class="row">
-      <div class="col-md-6">
-        <select id="i_jam_1" name="i_jam_1" class="form-control select2"/>
-      </div>
-      <div class="col-md-6">
-        <select id="i_jam_2" name="i_jam_2" class="form-control select2"/>
+<form id="booking_form" action="<?php echo $action?>">
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="hidden" id="i_building" name="i_building" value="<?php echo $building_id?>">
+      <input type="hidden" id="i_branch" name="i_branch" value="<?php echo $branch_id?>">
+      <label for="">Pilih Tanggal</label>
+      <div class="input-group date form_datetime" data-date="">
+          <input type="text" id="i_tangggal" name="i_tangggal" size="16" readonly class="form-control" required="true">
+          <span class="input-group-btn">
+              <button class="btn default date-reset" type="button">
+                  <i class="fa fa-times"></i>
+              </button>
+              <button class="btn default date-set" type="button">
+                  <i class="fa fa-calendar"></i>
+              </button>
+          </span>
       </div>
     </div>
+    <div class="form-group">
+      <label for="">Pilih Jam</label>
+      <div class="row">
+        <div class="col-md-6">
+          <select id="i_jam_1" name="i_jam_1" class="form-control select2"/>
+        </div>
+        <div class="col-md-6">
+          <select id="i_jam_2" name="i_jam_2" class="form-control select2"/>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-  <button id="btn_simpan" type="button" class="btn btn-primary">Simpan</button>
-</div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+      <button id="btn_simpan1" type="button" class="btn btn-primary">Next</button>
+  </div>
+</form>
+
 <script type="text/javascript">
 
   var building_id = "<?php echo $building_id?>";
@@ -125,23 +128,66 @@
   var i_jam_1 = '';
   var i_jam_2 = '';
 
-  $("#btn_simpan").on('click', function() {
+  $("#btn_simpan1").on('click', function() {
       i_building = $('#i_building').val();
       i_branch = $('#i_branch').val();
       i_tangggal = $('#i_tangggal').val();
       i_jam_1 = $('#i_jam_1').val();
       i_jam_2 = $('#i_jam_2').val();
 
-      var booking_detail = {
-          'i_building'  : i_building,
-          'i_branch'    : i_branch,
-          'i_tangggal'  : i_tangggal,
-          'i_jam_1'     : i_jam_1,
-          'i_jam_2'     : i_jam_2
-      }
+      var customer_detail = '<div class="form-group">\
+                              <input type="hidden" id="i_building" name="i_building" value="<?php echo $building_id?>">\
+                              <input type="hidden" id="i_branch" name="i_branch" value="<?php echo $branch_id?>">\
+                              <input type="hidden" id="i_building" name="i_building" value="<?php echo $building_id?>">\
+                              <input type="hidden" id="i_tangggal" name="i_tangggal" value="'+i_tangggal+'">\
+                              <input type="hidden" id="i_jam_1" name="i_jam_1" value="'+i_jam_1+'">\
+                              <input type="hidden" id="i_jam_2" name="i_jam_2" value="'+i_jam_2+'">\
+                              <label>Nama</label>\
+                              <input id="i_name" name="i_name" class="form-control" required/>\
+                            </div>\
+                            <div class="form-group">\
+                              <label>NIK</label>\
+                              <input id="i_nik" name="i_nik" class="form-control" required/>\
+                            </div>\
+                            <div class="form-group">\
+                              <label>Alamat</label>\
+                              <input id="i_alamat" name="i_alamat" class="form-control" required/>\
+                            </div>\
+                            <div class="form-group">\
+                              <label>No. Telepon</label>\
+                              <input id="i_phone" name="i_phone" class="form-control" required/>\
+                            </div>\
+                            <div class="form-group">\
+                              <label>Email</label>\
+                              <input type="email" id="i_mail" name="i_mail" class="form-control" required/>\
+                            </div>\
+                            ';
 
-      bookingstorage.push(booking_detail);
-
-      $('#booking_popmodal').find('.modal-content').load(url);
+      $.fn.booking_popmodal(customer_detail);
     });
+
+    $.fn.booking_popmodal = function(customer_detail)
+    {
+      $('#booking_popmodal').find('.modal-body').html(customer_detail);
+      $('#btn_simpan1').remove();
+      $('.modal-footer').append('<button id="btn_submit" type="submit" class="btn btn-primary" style="">Simpan</button>');
+    }
+
+  $("#booking_form").submit(function(e) {
+
+    $.ajax({
+           type: "POST",
+           url: $("#booking_form").attr('action'),
+           data: $("#booking_form").serialize(),
+           dataType : "json",
+           success: function(data)
+           {
+               $('#booking_popmodal').modal('hide');
+           }
+         });
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+
+
 </script>

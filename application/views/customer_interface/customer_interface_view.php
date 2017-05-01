@@ -227,11 +227,11 @@ $(document).ready(function(){
         });
 
         $.fn.getBooking = function(object){
+
           var building = object.attr('data-id');
           var branch = object.attr('data-branch-id');
           var url = "<?php echo base_url()?>Customer_interface_c/popmodal_booking/"+branch+"/"+building;
           $('#booking_popmodal').modal('show').find('.modal-content').load(url);
-          // $('.modal-body').modal('show');
 
         }
 

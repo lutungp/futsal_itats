@@ -114,11 +114,46 @@ class Customer_interface_c extends MY_Controller{
 
   function save_booking()
   {
+
     $i_building   = $this->input->post('i_building');
     $i_branch     = $this->input->post('i_branch');
+
+    $i_name       = $this->input->post('i_name');
+    $i_nik        = $this->input->post('i_nik');
+    $i_alamat     = $this->input->post('i_alamat');
+    $i_phone      = $this->input->post('i_phone');
+    $i_email      = $this->input->post('i_email');
+
     $i_tangggal   = $this->input->post('i_tangggal');
     $i_jam_1      = $this->input->post('i_jam_1');
     $i_jam_2      = $this->input->post('i_jam_2');
+
+    $data_customer = array(
+                            'customer_name'     => $i_name,
+                            'customer_nik'      => $i_nik,
+                            'customer_address'  => $i_alamat,
+                            'customer_phone'    => $i_phone,
+                            'customer_email'    => $i_email,
+                            'customer_status'   => 1
+                          );
+
+    $customer_id = $this->Global_m->create_config('customers', $data_customer);
+
+    $data_booking = array(
+                  'building_booking_building'     => $i_building,
+                  'building_booking_branch'       => $i_branch,
+                  'building_booking_customer'     => $customer_id,
+                  'building_booking_user'         => '',
+                  'building_booking_date'         => date("Y-m-d"),
+                  'building_booking_date_for'     => $i_tangggal,
+                  'building_booking_time_1'       => $i_jam_1,
+                  'building_booking_time_2'       => $i_jam_2,
+                  'building_booking_status'       => 1,
+                  'building_booking_status_desc'  => 'Belum Ada Konfirmasi'
+                );
+
+    $this->create_config('building_booking', $data_booking);
+    echo json_encode($customer_id);
   }
 
 }
