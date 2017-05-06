@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 // admin interface
 $route['admin']					    				= 'Dashboard1';
+$route['admin/getDataBook']					= 'Dashboard1/getdatabook';
 
 $route['user_list']									= 'User_c';
 $route['user_form']					 				= 'User_c/user_form';

@@ -178,18 +178,21 @@ class Customer_interface_c extends MY_Controller{
 
     $config = Array(
         'protocol' => 'smtp',
-        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_host' => 'smtp.googlemail.com',
         'smtp_port' => 465,
         'smtp_user' => 'lntngp19@gmail.co',
         'smtp_pass' => 'permanaday19',
         'mailtype'  => 'html',
-        'charset'   => 'iso-8859-1'
-    );
+        // 'charset'   => 'iso-8859-1'
+        'charset'   => 'utf-8'
+      );
+
     $this->email->initialize($config);
     $this->email->to('resi.raes@gmail.com');
     $this->email->from('lntngp19@gmail.co', 'lntngp19@gmail.co');
     $this->email->subject('JUDUL EMAIL (Teks)');
     $this->email->message('Isi email ditulis disini');
     $this->email->send();
+
   }
 }

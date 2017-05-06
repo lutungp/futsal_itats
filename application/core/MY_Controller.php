@@ -7,6 +7,7 @@ class MY_Controller extends CI_Controller{
 
   public $load_plugin_head;
   public $load_plugin_foot;
+  public $branch_id;
 
   public function __construct()
   {
@@ -14,22 +15,21 @@ class MY_Controller extends CI_Controller{
     // $this->load->model('Global_m');
     $this->load->helper(array('form', 'url'));
 
-    $branch_id = $this->session->userdata('branch_id');
+    $this->branch_id = $this->session->userdata('branch_id');
 
     $where_branch_id = array(
-      'branch_id' => $branch_id
+      'branch_id' => $this->branch_id
     );
 
     // check apakah kantor pusat
     $check_branch = $this->select_config_one('office_details', 'count(*) as result',$where_branch_id);
     $check_branch = $check_branch->result;
 
-    $this->where_branch_active = '';
+    $this->where_branch_active = null;
 
     if ($check_branch != 1) {
-      $this->where_branch_active = "WHERE branch = '$branch_id'";
+      $this->where_branch_active = "WHERE branch = '$this->branch_id'";
     }
-
   }
 
   function is_logged_in(){
