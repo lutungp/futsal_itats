@@ -153,7 +153,29 @@ class Customer_interface_c extends MY_Controller{
                 );
 
     $this->create_config('building_booking', $data_booking);
+    $this->send_email();
     echo json_encode($customer_id);
   }
 
+  function send_email()
+  {
+
+    $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => 465,
+        'smtp_user' => 'lntngp19@gmail.co',
+        'smtp_pass' => 'permanaday19',
+        'mailtype'  => 'html',
+        'charset'   => 'iso-8859-1'
+    );
+
+    $this->load->library('email');
+
+    $this->email->to('lntngp19@gmail.com');
+    $this->email->from('lntngp19@gmail.co', 'lntngp19@gmail.co');
+    $this->email->subject('JUDUL EMAIL (Teks)');
+    $this->email->message('Isi email ditulis disini');
+    $this->email->send();
+  }
 }

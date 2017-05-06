@@ -7,6 +7,8 @@ class Dashboard1 extends My_controller {
 		{
 			parent::__construct();
 			$this->is_logged_in();
+			$this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/css/components-rounded.min.css";
+
 		}
 
 	public function index($load_plugin_head = null, $load_plugin_foot = null )

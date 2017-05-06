@@ -21,7 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | Dashboard</title>
+        <title>Cari Lapangan</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
@@ -43,10 +43,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/morris/morris.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/fullcalendar/fullcalendar.min.css')?>" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url()?>assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url()?>assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url()?>assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url()?>assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/clockface/css/clockface.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2.min.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css')?>" rel="stylesheet" type="text/css" />
 
