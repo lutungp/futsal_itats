@@ -10,3 +10,11 @@ tr.text-center {
     z-index: 10!important;
     background-color: #000;
 }
+
+/*#futsal_background.page-content
+{
+  background-image:url('../img/Futsal_boots.jpg')!important;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: left top;
+}*/

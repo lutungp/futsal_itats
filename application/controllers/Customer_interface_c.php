@@ -80,11 +80,12 @@ class Customer_interface_c extends MY_Controller{
     $building   = $this->input->post('building_id');
     $branch     = $this->input->post('branch_id');
     $i_tangggal = $this->input->post('i_tangggal');
+    $i_tangggal_   = date("Y-m-d", strtotime($i_tangggal));
 
     $where_building_and_branch_id = array(
         'building_booking_building' => $building,
         'building_booking_branch'   => $branch,
-        'building_booking_date_for' => $i_tangggal
+        'building_booking_date_for' => $i_tangggal_
       );
 
     $where_branch_id = array('branch_id' => $branch );
@@ -93,7 +94,7 @@ class Customer_interface_c extends MY_Controller{
     $r_branch  = $this->Global_m->select_config_array('branches', $where_branch_id)->row();
 
     foreach ($q_booking->result() as $r_booking) {
-      $data['booking'] = array(
+      $data['booking'][] = array(
                                   'building_booking_time_1' => $r_booking->building_booking_time_1,
                                   'building_booking_time_2' => $r_booking->building_booking_time_2
                                 );
@@ -103,8 +104,8 @@ class Customer_interface_c extends MY_Controller{
     $data['open_time'] = array(
       'branch_hour_1' => date("H:m", $r_branch->branch_hour_1),
       'branch_hour_2' => date("H:m", $r_branch->branch_hour_2),
-      'strbranch_hour_1' => $r_branch->branch_hour_1,
-      'strbranch_hour_2' => $r_branch->branch_hour_2
+      'strbranch_hour_1'  => $r_branch->branch_hour_1,
+      'strbranch_hour_2'  => $r_branch->branch_hour_2,
     );
 
 
@@ -125,6 +126,8 @@ class Customer_interface_c extends MY_Controller{
     $i_email      = $this->input->post('i_email');
 
     $i_tangggal   = $this->input->post('i_tangggal');
+    $i_tangggal_   = date("Y-m-d", strtotime($i_tangggal));
+
     $i_jam_1      = $this->input->post('i_jam_1');
     $i_jam_2      = $this->input->post('i_jam_2');
 
@@ -145,20 +148,33 @@ class Customer_interface_c extends MY_Controller{
                   'building_booking_customer'     => $customer_id,
                   'building_booking_user'         => '',
                   'building_booking_date'         => date("Y-m-d"),
-                  'building_booking_date_for'     => $i_tangggal,
+                  'building_booking_date_for'     => $i_tangggal_,
                   'building_booking_time_1'       => $i_jam_1,
                   'building_booking_time_2'       => $i_jam_2,
                   'building_booking_status'       => 1,
                   'building_booking_status_desc'  => 'Belum Ada Konfirmasi'
                 );
 
-    $this->create_config('building_booking', $data_booking);
-    $this->send_email();
-    echo json_encode($customer_id);
+    // $this->create_config('building_booking', $data_booking);
+
+
+    if ($this->create_config('building_booking', $data_booking))
+    {
+        $data['status'] = '204';
+    } else {
+        $this->send_email();
+        $data['status'] = '200';
+        $data['customer'] = $customer_id;
+    }
+
+    echo json_encode($data);
+
   }
 
   function send_email()
   {
+
+    $this->load->library('email');
 
     $config = Array(
         'protocol' => 'smtp',
@@ -169,10 +185,8 @@ class Customer_interface_c extends MY_Controller{
         'mailtype'  => 'html',
         'charset'   => 'iso-8859-1'
     );
-
-    $this->load->library('email');
-
-    $this->email->to('lntngp19@gmail.com');
+    $this->email->initialize($config);
+    $this->email->to('resi.raes@gmail.com');
     $this->email->from('lntngp19@gmail.co', 'lntngp19@gmail.co');
     $this->email->subject('JUDUL EMAIL (Teks)');
     $this->email->message('Isi email ditulis disini');

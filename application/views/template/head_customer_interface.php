@@ -54,6 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/css/components-md.min.css')?>" rel="stylesheet" id="style_components" type="text/css" />
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/css/plugins-md.min.css')?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/mycss.css')?>" rel="stylesheet" type="text/css"/>
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/layouts/layout5/css/layout.min.css')?>" rel="stylesheet" type="text/css" />

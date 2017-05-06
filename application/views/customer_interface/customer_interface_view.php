@@ -14,14 +14,13 @@
     border: 1px solid #ff5e5e;
     color: #ff5e5e;
   }
-
 </style>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
         <!-- BEGIN CONTAINER -->
         <div class="wrapper">
             <!-- BEGIN HEADER -->
             <div class="container-fluid">
-                <div class="page-content">
+                <div id="futsal_background" class="page-content">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                           <div class="portlet light bordered form-fit">
@@ -74,10 +73,10 @@
                     <!-- END PAGE BASE CONTENT -->
                 </div>
                 <!-- BEGIN FOOTER -->
-                <p class="copyright">2015 © Metronic by keenthemes.
+                <!-- <p class="copyright">2015 © Metronic by keenthemes.
                     <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
                     title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-                </p>
+                </p> -->
                 <a href="#index" class="go2top">
                     <i class="icon-arrow-up"></i>
                 </a>
@@ -199,15 +198,11 @@ $(document).ready(function(){
                     start_content = 0;
                   }
 
-                  // $('.content4').hide();
-                  // $('.content4').show("slide", { direction: "left" }, 1000);
-                  // console.log(start_content);
                   $('.content4').empty();
 
                   for (var i = start_content; i <= start_content+2; i++) {
                     $('.content4').append(panel_lapangan[i]);
                   }
-                  // $('.content4').parent().siblings(":visible").hide("slide", { direction: "left" }, 1000);
 
                 });
 
