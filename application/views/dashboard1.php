@@ -63,7 +63,7 @@
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
                             <i class=" icon-social-twitter font-dark hide"></i>
-                            <span class="caption-subject font-dark bold uppercase">Quick Actions</span>
+                            <span class="caption-subject font-dark bold uppercase">Booking List</span>
                         </div>
                         <ul class="nav nav-tabs">
                             <li class="active">
@@ -76,10 +76,18 @@
                     </div>
                     <div class="portlet-body">
                         <div class="tab-content">
-                            <div class="scrolling tab-pane active" id="bookinglist" style="height: 500px;">
+                          <div class="tab-pane active" id="tab_actions_pending">
+                            <div class="scrolling tab-pane active" id="bookinglistpending" style="height: 500px;">
                                 <!-- BEGIN: Actions -->
                                 <!-- END: Actions -->
                             </div>
+                          </div>
+                          <div class="tab-pane" id="tab_actions_completed">
+                            <div class="scrolling tab-pane" id="bookinglistcompleted" style="height: 500px;">
+                                <!-- BEGIN: Actions -->
+                                <!-- END: Actions -->
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -100,48 +108,95 @@
         data    : {branch_id:branch_id},
         dataType: "json",
         success : function(data){
+          // bookinglistcompleted
+          $('#bookinglistpending').empty();
+          $('#bookinglistcompleted').empty();
+
           for (var i = 0; i < data.length; i++) {
-            $('#bookinglist').append('\
-            <div class="mt-actions">\
-                <div class="mt-action">\
-                    <div class="mt-action-img">\
-                    </div>\
-                    <div class="mt-action-body">\
-                        <div class="mt-action-row">\
-                            <div class="mt-action-info ">\
-                                <div class="mt-action-icon ">\
-                                    <i class="icon-magnet"></i>\
-                                </div>\
-                                <div class="mt-action-details ">\
-                                    <span class="mt-action-author">'+data[i].customer_name+'</span>\
-                                    <p class="mt-action-desc">Dummy text of the printing</p>\
-                                </div>\
-                            </div>\
-                            <div class="mt-action-datetime ">\
-                                <span class="mt-action-date">'+data[i].building_booking_date_for+'</span>\
-                                <span class="mt-action-dot bg-green"></span>\
-                                <span class="mt=action-time">'+data[i].building_booking_time_1+'.00\
-                                 - '+data[i].building_booking_time_2+'.00</span>\
-                            </div>\
-                            <div class="mt-action-buttons ">\
-                                <div class="btn-group btn-group-circle">\
-                                    <button type="button" class="btn btn-outline green btn-sm">Appove</button>\
-                                    <button type="button" class="btn btn-outline red btn-sm">Reject</button>\
-                                </div>\
-                            </div>\
-                        </div>\
-                    </div>\
-                </div>\
-            </div>\
-            ');
+            if (data[i].building_booking_status == 1) {
+              $('#bookinglistpending').append('\
+              <div class="mt-actions">\
+              <div class="mt-action">\
+              <div class="mt-action-img">\
+              </div>\
+              <div class="mt-action-body">\
+              <div class="mt-action-row">\
+              <div class="mt-action-info ">\
+              <div class="mt-action-icon ">\
+              <i class="icon-magnet"></i>\
+              </div>\
+              <div class="mt-action-details ">\
+              <span class="mt-action-author">'+data[i].customer_name+'</span>\
+              <p class="mt-action-desc">Dummy text of the printing</p>\
+              </div>\
+              </div>\
+              <div class="mt-action-datetime ">\
+              <span class="mt-action-date">'+data[i].building_booking_date_for+'</span>\
+              <span class="mt-action-dot bg-green"></span>\
+              <span class="mt=action-time">'+data[i].building_booking_time_1+'.00\
+              - '+data[i].building_booking_time_2+'.00</span>\
+              </div>\
+              <div class="mt-action-buttons ">\
+              <div class="btn-group btn-group-circle">\
+              <button type="button" data-building-booking-id="'+data[i].building_booking_id+'"\
+              class="btn btn-outline green btn-sm btn-approve" onclick="btn_approve(this);">Appove</button>\
+              <button type="button" class="btn btn-outline red btn-sm">Reject</button>\
+              </div>\
+              </div>\
+              </div>\
+              </div>\
+              </div>\
+              </div>');
+            }
+
+            if (data[i].building_booking_status == 2) {
+              $('#bookinglistcompleted').append('\
+              <div class="mt-actions">\
+              <div class="mt-action">\
+              <div class="mt-action-img">\
+              </div>\
+              <div class="mt-action-body">\
+              <div class="mt-action-row">\
+              <div class="mt-action-info ">\
+              <div class="mt-action-icon ">\
+              <i class="icon-magnet"></i>\
+              </div>\
+              <div class="mt-action-details ">\
+              <span class="mt-action-author">'+data[i].customer_name+'</span>\
+              <p class="mt-action-desc">Dummy text of the printing</p>\
+              </div>\
+              </div>\
+              <div class="mt-action-datetime ">\
+              <span class="mt-action-date">'+data[i].building_booking_date_for+'</span>\
+              <span class="mt-action-dot bg-green"></span>\
+              <span class="mt=action-time">'+data[i].building_booking_time_1+'.00\
+              - '+data[i].building_booking_time_2+'.00</span>\
+              </div>\
+              <div class="mt-action-buttons ">\
+              <div class="btn-group btn-group-circle">\
+              </div>\
+              </div>\
+              </div>\
+              </div>\
+              </div>\
+              </div>');
+            }
           }
         }
       });
     };
 
-    $.fn.getDataBook(branch_id_active);
+      $.fn.getDataBook(branch_id_active);
 
   });
 
-
+  function btn_approve(elem)
+  {
+    var booking_id = $(elem).attr('data-building-booking-id');
+    $.post('admin/updateDataBook', { booking_id : booking_id }, function(data, status){
+      if (status=='success') {
+        alert();
+      }
+    });
+  }
 </script>

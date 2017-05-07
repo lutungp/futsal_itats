@@ -13,8 +13,8 @@
       <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')?>" rel="stylesheet" type="text/css" />
       <!-- END GLOBAL MANDATORY STYLES -->
       <!-- BEGIN PAGE LEVEL PLUGINS -->
-      <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2.min.css')?>" rel="stylesheet" type="text/css" />
-      <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css')?>" rel="stylesheet" type="text/css" />
+      <!-- <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2.min.css')?>" rel="stylesheet" type="text/css" />
+      <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/css/select2-bootstrap.min.css')?>" rel="stylesheet" type="text/css" /> -->
       <!-- END PAGE LEVEL PLUGINS -->
       <!-- BEGIN THEME GLOBAL STYLES -->
       <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/css/components.min.css')?>" rel="stylesheet" id="style_components" type="text/css" />
@@ -46,10 +46,10 @@
       </div>
         <div class="content">
                 <div class="alert alert-danger">
-                  <strong>Info!</strong> Indicates a neutral informative change or action.
+                  <strong>Info!</strong> Log in success
                 </div>
                 <div class="alert alert-info">
-                  <strong>Info!</strong> Indicates a neutral informative change or action.
+                  <strong>Info!</strong> Log in error, Username dan Password tidak sesuai
                 </div>
                 <form id="login_form" action="<?php echo site_url('auth/login') ?>" method="post">
                     <div class="form-title">
@@ -84,7 +84,7 @@
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/jquery-validation/js/jquery.validate.min.js')?>" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/jquery-validation/js/additional-methods.min.js')?>" type="text/javascript"></script>
-        <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/js/select2.full.min.js')?>" type="text/javascript"></script>
+        <!-- <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/select2/js/select2.full.min.js')?>" type="text/javascript"></script> -->
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/scripts/app.min.js')?>" type="text/javascript"></script>
@@ -102,6 +102,10 @@
             //         increaseArea: '20%' // optional
             //     });
             // });
+
+            $(function(){
+              $('#username').focus();
+            });
 
             // this is the id of the form
             $("#login_form").submit(function(e) {
@@ -130,6 +134,8 @@
                 $(".alert-danger").fadeIn();
                 $('#username').val('');
                 $('#password').val('');
+
+                $('#username').focus();
               }
             }
 

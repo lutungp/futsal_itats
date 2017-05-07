@@ -66,15 +66,12 @@ class Dashboard1 extends My_controller {
 						'param'	 => $branch_id
 					);
 		}
-		$where['data'][] = array(
-					'column' => 'a.building_booking_status',
-					'param'	 => 1
-				);
 
 		$query = $this->Global_m->globalselect($select, $table, $join, $where);
 
 		foreach ($query->result() as $row) {
 			$data[] = array(
+				'building_booking_id' 					=> $row->building_booking_id,
 				'branch_name' 									=> $row->branch_name,
 				'building_name' 								=> $row->building_name,
 				'building_status' 							=> $row->building_status,
@@ -92,8 +89,25 @@ class Dashboard1 extends My_controller {
 
 	}
 
+	function updatedatabook()
+	{
+			$booking_id 			= $this->input->post('booking_id');
+			$dataupdate 			= array('building_booking_status' => 2 );
+			$where_booking_id = array('building_booking_id' => $booking_id);
+
+			if($this->update_config('building_booking', $dataupdate, $where_booking_id))
+			{
+				$data['status'] = 204;
+			} else {
+				$data['status'] = 200;
+				$data['booking_id'] = $booking_id;
+			}
+			echo json_encode($data);
+	}
+
 	function popmodal_log_out()
 	{
 
 	}
+
 }

@@ -42,15 +42,15 @@ class Customer_interface_c extends MY_Controller{
       if ($r_building->status_building_id == 1) { $status_building = "<div class='status-lapangan available'>".$r_building->status_building_name."</div>"; }
 
       $data[] = array(
-                                'building_id'     => $r_building->building_id,
-                                'building_status' => $r_building->building_status,
-                                'building_name'   => $r_building->building_name,
-                                'building_img'    => $r_building->building_img,
-                                'path'            =>  base_url().'assets/img/buildings/',
+                                'building_id'           => $r_building->building_id,
+                                'building_status'       => $r_building->building_status,
+                                'building_name'         => $r_building->building_name,
+                                'building_img'          => $r_building->building_img,
+                                'path'                  =>  base_url().'assets/img/buildings/',
                                 'status_building_name'  => $r_building->status_building_name,
                                 'status_building_id'    => $r_building->status_building_id,
-                                'status'          => $status_building,
-                                'branch'          => $r_building->branch
+                                'status'                => $status_building,
+                                'branch'                => $r_building->branch
                               );
 
     };
@@ -102,8 +102,8 @@ class Customer_interface_c extends MY_Controller{
     }
 
     $data['open_time'] = array(
-      'branch_hour_1' => date("H:m", $r_branch->branch_hour_1),
-      'branch_hour_2' => date("H:m", $r_branch->branch_hour_2),
+      'branch_hour_1'     => date("H:m", $r_branch->branch_hour_1),
+      'branch_hour_2'     => date("H:m", $r_branch->branch_hour_2),
       'strbranch_hour_1'  => $r_branch->branch_hour_1,
       'strbranch_hour_2'  => $r_branch->branch_hour_2,
     );
@@ -160,11 +160,11 @@ class Customer_interface_c extends MY_Controller{
 
     if ($this->create_config('building_booking', $data_booking))
     {
-        $data['status'] = '204';
+      $data['status'] = '204';
     } else {
-        $this->send_email();
-        $data['status'] = '200';
-        $data['customer'] = $customer_id;
+      $this->send_email();
+      $data['status'] = '200';
+      $data['customer'] = $customer_id;
     }
 
     echo json_encode($data);
@@ -177,7 +177,7 @@ class Customer_interface_c extends MY_Controller{
     $this->load->library('email');
 
     $config = Array(
-        'protocol' => 'smtp',
+        'protocol'  => 'smtp',
         'smtp_host' => 'smtp.googlemail.com',
         'smtp_port' => 465,
         'smtp_user' => 'lntngp19@gmail.co',
