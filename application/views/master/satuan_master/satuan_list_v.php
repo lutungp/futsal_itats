@@ -74,7 +74,7 @@
 											</a>
 										</td>
 									</tr>
-									<?$no++;}?>
+									<?php $no++;}?>
 								</tbody>
 								<tfoot>
 									<tr>

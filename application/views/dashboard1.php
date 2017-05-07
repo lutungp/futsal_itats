@@ -67,7 +67,7 @@
                         </div>
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#tab_actions_pending" data-toggle="tab"> Pending </a>
+                                <a href="#tab_actions_pending" data-toggle="tab"> Wait Confirm </a>
                             </li>
                             <li>
                                 <a href="#tab_actions_completed" data-toggle="tab"> Completed </a>

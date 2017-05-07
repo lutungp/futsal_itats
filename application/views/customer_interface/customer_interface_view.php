@@ -1,19 +1,5 @@
 <style media="screen">
 
-  .status-lapangan{
-    border-radius: 20px;
-    width: 30%;
-  }
-
-  .available {
-    border: 1px solid #62ff5e;
-    color: #62ff5e;
-  }
-
-  .no-available{
-    border: 1px solid #ff5e5e;
-    color: #ff5e5e;
-  }
 </style>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
         <!-- BEGIN CONTAINER -->
