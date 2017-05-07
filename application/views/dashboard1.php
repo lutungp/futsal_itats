@@ -98,11 +98,12 @@
 </div>
 <script type="text/javascript">
 // mt-comments
+var branch_id_active = '<?php echo $this->branch_id; ?>';
   $(document).ready(function(){
-    var branch_id_active = '<?php echo $this->branch_id; ?>';
 
     $.fn.getDataBook = function(branch_id){
       $.ajax({
+        cache   : false,
         url     : "<?php echo base_url('admin/getDataBook')?>",
         type    : "POST",
         data    : {branch_id:branch_id},
@@ -195,8 +196,18 @@
     var booking_id = $(elem).attr('data-building-booking-id');
     $.post('admin/updateDataBook', { booking_id : booking_id }, function(data, status){
       if (status=='success') {
-        alert();
+        var mt_actionsclass = $(elem).parent().parent().parent().parent().parent().parent();
+        mt_actionsclass.hide("slide", { direction: "right" }, 500);
       }
+      setTimeout(function(){
+        $.fn.getDataBook(branch_id_active);
+      }, 500);
     });
   }
+  $(document).ready(function(){
+  setInterval(function()
+          {
+              $.fn.getDataBook(branch_id_active);
+          }, 1000);
+    });
 </script>

@@ -207,12 +207,10 @@
            url: $("#booking_form").attr('action'),
            data: $("#booking_form").serialize(),
            dataType : "json",
-           success: function(data)
+           success: function(data, st)
            {
              bookingstorage = [];
-             if (data.status = 200) {
-               $('#booking_popmodal').modal('hide');
-             }
+            $('#booking_popmodal').modal('hide');
            }
          });
 
