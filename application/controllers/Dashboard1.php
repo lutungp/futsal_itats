@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard1 extends My_controller {
 
+
 		public function __construct()
 		{
 			parent::__construct();
@@ -27,7 +28,7 @@ class Dashboard1 extends My_controller {
 			$this->load->view('template/head_admin_interface', $data);
 			$this->load->view('template/topbar');
 			$this->sidebar();
-			$this->load->view('dashboard1');;
+			$this->load->view('dashboard1');
 			$this->load->view('template/js_admin_interface', $data);
 			$this->load->view('template/foot');
 	}
@@ -92,7 +93,7 @@ class Dashboard1 extends My_controller {
 	function updatedatabook()
 	{
 			$booking_id 			= $this->input->post('booking_id');
-			$dataupdate 			= array('building_booking_status' => 2 );
+			$dataupdate 			= array('building_booking_status' => 2);
 			$where_booking_id = array('building_booking_id' => $booking_id);
 
 			if($this->update_config('building_booking', $dataupdate, $where_booking_id))
@@ -118,6 +119,35 @@ class Dashboard1 extends My_controller {
 			$data['status'] = 200;
 			$data['booking_id'] = $booking_id;
 		}
+		echo json_encode($data);
+	}
+
+	function getdatabooktoday()
+	{
+		$branch_id = $this->input->post('branch_id');
+		$table = "building_booking a";
+		$select = "count(a.building_booking_id) `allbook`, if(a.building_booking_status = 1, count(a.building_booking_id), '0' ) `unC`, if(a.building_booking_status = 2, count(a.building_booking_id), '0' ) `C`";
+		$where = '';
+
+		$where['data'][] = array(
+					'column' => 'a.building_booking_date',
+					'param'	 => date("Y-m-d")
+				);
+
+		if ($this->where_branch_active!=null) {
+				$where['data'][] = array(
+							'column' => 'a.building_booking_branch',
+							'param'	 => $branch_id
+						);
+			}
+		$countdataBookingtoday 		= $this->Global_m->globalselect($select, $table, null, $where);
+		foreach ($countdataBookingtoday->result() as $row) {
+			$data['databooktoday']		= $row->allbook;
+			$data['databooktodayunC']	= $row->unC;
+			$data['databooktodayC']		= $row->C;
+		}
+		// echo $this->db->last_query();
+		// print_r($data);
 		echo json_encode($data);
 	}
 

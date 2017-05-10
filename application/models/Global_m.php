@@ -90,6 +90,7 @@ class Global_m extends CI_Model{
       }
 
       $query = $this->db->get();
+      // echo $this->db->last_query();
       if($query->num_rows() > 0)
           return $query;
       else

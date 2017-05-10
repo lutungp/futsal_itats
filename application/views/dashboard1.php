@@ -11,9 +11,9 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="1349">0</span>
+                            <span data-counter="counterup" data-value="1349" id="dataBookToday">0</span>
                         </div>
-                        <div class="desc"> New Feedbacks </div>
+                        <div class="desc"> Booking Today</div>
                     </div>
                 </a>
             </div>
@@ -24,8 +24,8 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-                        <div class="desc"> Total Profit </div>
+                            <span data-counter="counterup" data-value="12,5" id="dataBookTodayconfirm">0</span></div>
+                        <div class="desc">Get Confirm </div>
                     </div>
                 </a>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="details">
                         <div class="number">
-                            <span data-counter="counterup" data-value="549">0</span>
+                            <span data-counter="counterup" data-value="549" id="dataBookTodayunconfirm">0</span>
                         </div>
                         <div class="desc"> New Orders </div>
                     </div>
@@ -188,7 +188,33 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
       });
     };
 
+    $.fn.dataBookToday = function(branch_id)
+    {
+      $.ajax({
+        cache   : false,
+        url     : "<?php echo base_url('admin/getDataBooktoday')?>",
+        type    : "POST",
+        data    : {branch_id:branch_id},
+        dataType: "json",
+        success : function(data){
+
+          $('#dataBookToday').empty();
+          $('#dataBookTodayconfirm').empty();
+          $('#dataBookTodayunconfirm').empty();
+          // $.each(data, function(key, value) {
+
+              $('#dataBookToday').html(data.databooktoday);
+              $('#dataBookTodayconfirm').html(data.databooktodayC);
+              $('#dataBookTodayunconfirm').html(data.databooktodayunC);
+
+          // });
+        }
+
+      });
+    }
+
       $.fn.getDataBook(branch_id_active);
+      $.fn.dataBookToday(branch_id_active);
 
   });
 
@@ -223,7 +249,7 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
   $(document).ready(function(){
   setInterval(function()
           {
-              $.fn.getDataBook(branch_id_active);
+              // $.fn.getDataBook(branch_id_active);
           }, 1000);
     });
 </script>
