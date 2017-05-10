@@ -141,7 +141,8 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
               <div class="btn-group btn-group-circle">\
               <button type="button" data-building-booking-id="'+data[i].building_booking_id+'"\
               class="btn btn-outline green btn-sm btn-approve" onclick="btn_approve(this);">Appove</button>\
-              <button type="button" class="btn btn-outline red btn-sm">Reject</button>\
+              <button type="button" data-building-booking-id="'+data[i].building_booking_id+'"\
+              class="btn btn-outline red btn-sm" onclick="btn_remove(this);">Reject</button>\
               </div>\
               </div>\
               </div>\
@@ -204,6 +205,21 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
       }, 500);
     });
   }
+
+  function btn_remove(elem)
+  {
+    var booking_id = $(elem).attr('data-building-booking-id');
+    $.post('admin/deleteDataBook', { booking_id : booking_id }, function(data, status){
+      if (status=='success') {
+        var mt_actionsclass = $(elem).parent().parent().parent().parent().parent().parent();
+        mt_actionsclass.hide("slide", { direction: "left" }, 500);
+      }
+      setTimeout(function(){
+        $.fn.getDataBook(branch_id_active);
+      }, 500);
+    });
+  }
+
   $(document).ready(function(){
   setInterval(function()
           {

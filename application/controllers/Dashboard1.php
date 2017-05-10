@@ -105,6 +105,22 @@ class Dashboard1 extends My_controller {
 			echo json_encode($data);
 	}
 
+	function deleteDataBook()
+	{
+		$booking_id 			= $this->input->post('booking_id');
+		// $dataupdate 			= array('building_booking_status' => 2 );
+		$where_booking_id = array('building_booking_id' => $booking_id);
+
+		if($this->delete_config('building_booking', $where_booking_id))
+		{
+			$data['status'] = 204;
+		} else {
+			$data['status'] = 200;
+			$data['booking_id'] = $booking_id;
+		}
+		echo json_encode($data);
+	}
+
 	function popmodal_log_out()
 	{
 
