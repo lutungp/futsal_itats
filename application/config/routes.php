@@ -70,7 +70,7 @@ $route['customer_list']                   = 'Customer_c';
 
 $route['user_list']									      = 'User_c';
 $route['user_form']					 				      = 'User_c/user_form';
-$route['user_form_edit/(:num)']           = 'User_c/user_edit/$1';
+$route['user_form_edit/(:num)/(:num)/(:num)']           = 'User_c/user_edit/$1/$2/$3';
 
 $route['user_type_list']									= 'User_type_c';
 $route['user_type_form']					 				= 'User_type_c/user_type_form';

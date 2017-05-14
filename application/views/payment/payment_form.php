@@ -304,7 +304,7 @@
            success: function(data)
            {
             //  console.log(data.id);
-               window.open("<?php base_url()?>Payment_c/printbookpayment/"+data.id);
+               window.open("<?php base_url()?>Payment_c/printbookpayment/"+data.id+"/"+data.building+"/"+data.branch);
            }
          });
 
