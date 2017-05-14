@@ -6,7 +6,7 @@
         <div class="wrapper">
             <!-- BEGIN HEADER -->
             <div class="container-fluid">
-                <div id="futsal_background" class="page-content">
+                <div id="futsal_background" class="page-content" style="top: 75px;">
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                           <div class="portlet light bordered form-fit">
