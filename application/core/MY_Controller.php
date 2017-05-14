@@ -169,4 +169,17 @@ class MY_Controller extends CI_Controller{
 
   }
 
+  function get_branch()
+  {
+    $where = '';
+    $q_branch = $this->select_config('branches', $where);
+    foreach ($q_branch->result() as $row) {
+      $data[] = array(
+                    'branch_id' => $row->branch_id,
+                    'branch_name' => $row->branch_name
+                  );
+    }
+    echo json_encode($data);
+  }
+
 }

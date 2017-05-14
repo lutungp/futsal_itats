@@ -108,9 +108,8 @@ class Customer_interface_c extends MY_Controller{
       'strbranch_hour_2'  => $r_branch->branch_hour_2,
     );
 
-
-
     echo json_encode($data);
+
   }
 
   function save_booking()
@@ -131,6 +130,7 @@ class Customer_interface_c extends MY_Controller{
     $i_jam_1      = $this->input->post('i_jam_1');
     $i_jam_2      = $this->input->post('i_jam_2');
 
+    $i_code       = $this->generate_code($i_tangggal, $i_jam_1, $i_jam_2, $i_building, $i_branch );
     $data_customer = array(
                             'customer_name'     => $i_name,
                             'customer_nik'      => $i_nik,
@@ -144,6 +144,7 @@ class Customer_interface_c extends MY_Controller{
 
     $data_booking = array(
                   'building_booking_building'     => $i_building,
+                  'building_booking_code'         => $i_code,
                   'building_booking_branch'       => $i_branch,
                   'building_booking_customer'     => $customer_id,
                   'building_booking_user'         => '',
@@ -194,5 +195,11 @@ class Customer_interface_c extends MY_Controller{
     $this->email->message('Isi email ditulis disini');
     $this->email->send();
 
+  }
+
+  function generate_code($tanggal, $jam1, $jam2, $i_building, $i_branch)
+  {
+    $i_code = $tanggal."/".$jam1."/".$jam2."/".$i_building."/".$i_branch;
+    return $i_code;
   }
 }

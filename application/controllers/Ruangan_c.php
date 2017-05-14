@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      'branches'           => $this->select_config('branches', $where),
                       );
 
-      $this->get_page($data, $action, $this->load_plugin_head);
+      $this->get_page($data, $action, $this->load_plugin_head, $this->load_plugin_foot);
     }
 
     function add_ruangan()

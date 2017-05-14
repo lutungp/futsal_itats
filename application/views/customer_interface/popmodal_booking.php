@@ -1,6 +1,6 @@
 <style media="screen">
 .datepicker.dropdown-menu {
-    left: 802.837px!important;
+    /*left: 802.837px!important;*/
   }
 </style>
 <div class="modal-header">
@@ -14,7 +14,7 @@
       <input type="hidden" id="i_branch" name="i_branch" value="<?php echo $branch_id?>">
       <label for="">Pilih Tanggal</label>
       <div class="input-group date form_datetime" data-date="">
-          <input type="text" id="i_tangggal" name="i_tangggal" size="16" readonly class="form-control" required="true">
+          <input type="text" id="i_tangggal" name="i_tangggal" size="" readonly class="form-control" required="true">
           <span class="input-group-btn">
               <button class="btn default date-reset" type="button">
                   <i class="fa fa-times"></i>
@@ -56,9 +56,10 @@
   var base_url    = "<?php echo base_url()?>";
   var i_tangggal  = $('#i_tangggal').val();
 
-  var date =  moment().format('DD/MM/YYYY');
-  $.fn.get_tangggal = function(){
 
+  $.fn.get_tangggal = function(){
+    var date = "Sun May 14 2017";
+    // console.log(date);
     var i_tangggal  = $('#i_tangggal').val();
 
     $.ajax({
@@ -85,15 +86,26 @@
 
          var JamYgSudahdiBook    = data['booking'];
 
+        //  console.log(JamYgSudahdiBook);
+        //  var date = new Date();
          var timeStart  = new Date(date+" "+jam_buka);
          var timeEnd    = new Date(date+" "+jam_tutup);
-         var difference = timeEnd - timeStart;
+         var difference = jam_tutup - jam_buka;
          difference = difference / 60 / 60 / 1000;
 
          var booking_time = jam_buka.split(':');
          var booking_time1 = booking_time[0];
 
-         for (var i = 0; i < difference; i++) {
+        var startTime = moment(timeStart);
+        var endTime   = moment(timeEnd);
+        var duration  = moment.duration(endTime.diff(startTime));
+        var hours     = parseInt(duration.asHours());
+        var minutes   = parseInt(duration.asMinutes())-hours*60;
+        // alert (hours + ' hour and '+ minutes+' minutes');
+
+
+        //  console.log(booking_time1);
+         for (var i = 0; i < hours; i++) {
 
             booking_start = 0;
             booking_start = parseInt(booking_time1)+i;
@@ -102,7 +114,7 @@
             $.fn.sudahBooking(booking_start, JamYgSudahdiBook);
          }
 
-         for (var i = 0; i < difference; i++) {
+         for (var i = 0; i < hours; i++) {
            booking_end = 0;
            booking_end = parseInt(booking_time1)+i;
           $('#i_jam_2').append('<option value="'+parseInt(booking_end)+'">'+parseInt(booking_end)+':00</option>');
@@ -203,15 +215,17 @@
   $("#booking_form").submit(function(e) {
 
     $.ajax({
-           type: "POST",
-           url: $("#booking_form").attr('action'),
-           data: $("#booking_form").serialize(),
+           type     : "POST",
+           url      : $("#booking_form").attr('action'),
+           data     : $("#booking_form").serialize(),
            dataType : "json",
-           success: function(data, st)
+           success  : function(data)
            {
+             $('#booking_popmodal').modal('hide');
              bookingstorage = [];
-            $('#booking_popmodal').modal('hide');
-           }
+          },error   : function(){
+            alert("error");
+          }
          });
 
     e.preventDefault(); // avoid to execute the actual submit of the form.

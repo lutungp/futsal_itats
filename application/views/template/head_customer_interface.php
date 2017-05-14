@@ -61,5 +61,5 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/layouts/layout5/css/custom.min.css')?>" rel="stylesheet" type="text/css" />
 
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <!-- <link rel="shortcut icon" href="favicon.ico" /> </head> -->
     <!-- END HEAD -->

@@ -140,7 +140,7 @@ class Dashboard1 extends My_controller {
 							'param'	 => $branch_id
 						);
 			}
-		$countdataBookingtoday 		= $this->Global_m->globalselect($select, $table, null, $where);
+		$countdataBookingtoday 			= $this->Global_m->globalselect($select, $table, null, $where);
 		foreach ($countdataBookingtoday->result() as $row) {
 			$data['databooktoday']		= $row->allbook;
 			$data['databooktodayunC']	= $row->unC;

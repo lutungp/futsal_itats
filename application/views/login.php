@@ -46,10 +46,10 @@
       </div>
         <div class="content">
                 <div class="alert alert-danger">
-                  <strong>Info!</strong> Log in success
+                  <strong>Info!</strong> Log in error, Username dan Password tidak sesuai
                 </div>
                 <div class="alert alert-info">
-                  <strong>Info!</strong> Log in error, Username dan Password tidak sesuai
+                  <strong>Info!</strong> Log in success
                 </div>
                 <form id="login_form" action="<?php echo site_url('auth/login') ?>" method="post">
                     <div class="form-title">

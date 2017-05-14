@@ -9,18 +9,31 @@ class Customer_c extends MY_Controller{
     $this->load->model('customer_m');
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
+    $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
+
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js";
+    $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js";
   }
 
   function index()
   {
-    $this->get_header();
+    $this->get_header($this->load_plugin_head);
     $this->customer_list();
-    $this->get_footer();
+    $this->get_footer($this->load_plugin_foot);
   }
 
   function customer_list()
   {
-    $data = array('customers'   => $this->select_config('customers', ''),
+
+    $page_bar['data'][] = array(
+                              'title_page' => 'Customer list',
+                              'url'        => 'customer_list'
+                            );
+
+    $data = array(
+                  'title_page' 	=> $this->page_bar($page_bar),
+                  'customers'   => $this->select_config('customers', ''),
                   'action'      => "customer_c/customer_form",
                 );
     $this->load->view('master/customer_master/customer_list_v', $data);
@@ -36,7 +49,7 @@ class Customer_c extends MY_Controller{
                    'customer_details' => false,
                    'customer'    => $this->select_config('customers', $where)
                     );
-    $this->get_page($data,$url);
+    $this->get_page($data, $url);
   }
 
   function add_customer()

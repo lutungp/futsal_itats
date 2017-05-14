@@ -53,28 +53,36 @@ $route['default_controller'] = 'Customer_interface_c';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// admin interface
-$route['admin']					    				= 'Dashboard1';
-$route['admin/getDataBook']					= 'Dashboard1/getdatabook';
-$route['admin/updateDataBook']      = 'Dashboard1/updatedatabook';
-$route['admin/deleteDataBook']      = 'Dashboard1/deletedataBook';
-$route['admin/getDataBooktoday']    = 'Dashboard1/getdatabooktoday';
+// my_controller
+// $route['Global/get_branch']					    	= 'MY_Controller/get_branch';
 
-$route['user_list']									= 'User_c';
-$route['user_form']					 				= 'User_c/user_form';
-$route['user_form_edit/(:num)']     = 'User_c/user_edit/$1';
+// admin interface
+$route['admin']					    				      = 'Dashboard1';
+$route['admin/getDataBook']					      = 'Dashboard1/getdatabook';
+$route['admin/updateDataBook']            = 'Dashboard1/updatedatabook';
+$route['admin/deleteDataBook']            = 'Dashboard1/deletedataBook';
+$route['admin/getDataBooktoday']          = 'Dashboard1/getdatabooktoday';
+
+$route['payment']                         = 'Payment_c';
+$route['payment/print/(:num)']            = 'Payment_c/printbookpayment/$i';
+
+$route['customer_list']                   = 'Customer_c';
+
+$route['user_list']									      = 'User_c';
+$route['user_form']					 				      = 'User_c/user_form';
+$route['user_form_edit/(:num)']           = 'User_c/user_edit/$1';
 
 $route['user_type_list']									= 'User_type_c';
 $route['user_type_form']					 				= 'User_type_c/user_type_form';
 $route['user_type_form_edit/(:num)']      = 'User_type_c/user_type_edit/$1';
 
-$route['cabang_list']               = 'Cabang_c';
-$route['cabang_form']               = 'Cabang_c/cabang_form';
-$route['cabang_edit/(:num)']        = 'Cabang_c/cabang_edit/$1';
+$route['cabang_list']                     = 'Cabang_c';
+$route['cabang_form']                     = 'Cabang_c/cabang_form';
+$route['cabang_edit/(:num)']              = 'Cabang_c/cabang_edit/$1';
 
-$route['lapangan_list']             = 'Ruangan_c';
-$route['lapangan_edit/(:num)']      = 'Ruangan_c/edit_ruangan/$1';
-$route['lapangan_form']             = 'Ruangan_c/ruangan_form';
+$route['lapangan_list']                   = 'Ruangan_c';
+$route['lapangan_edit/(:num)']            = 'Ruangan_c/edit_ruangan/$1';
+$route['lapangan_form']                   = 'Ruangan_c/ruangan_form';
 
-$route['Head_office']               = 'Office_c';
-$route['Head_office_form']          = 'Office_c/office_form';
+$route['Head_office']                     = 'Office_c';
+$route['Head_office_form']                = 'Office_c/office_form';

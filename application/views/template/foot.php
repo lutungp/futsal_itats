@@ -1,6 +1,6 @@
       <script type="text/javascript">
       $(function () {
-        if(typeof $.fn.DataTable !== 'undefined') {
+        if(typeof $.fn.DataTable !== 'undefined'){
           $("#datatable_1").DataTable();
 
           $("#example2").DataTable({
@@ -30,6 +30,12 @@
           });
         }
       });
+
+        if(typeof $.fn.datepicker !== 'undefined'){
+          $('#i_tanggal').datepicker({
+              format: 'dd-mm-yyyy',
+          });
+        }
 
       </script>
     </body>

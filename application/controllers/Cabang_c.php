@@ -7,7 +7,7 @@ class Cabang_c extends MY_Controller{
   {
     parent::__construct();
     $this->is_logged_in();
-    $this->load->model('cabang_m');
+    $this->load->model('Cabang_m');
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
     $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";

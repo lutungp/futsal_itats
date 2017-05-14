@@ -40,7 +40,7 @@
 				  </a>
 			  </li>
 			  <?php
-				$where_sidebar_url = array('sidebar_url' => $this->uri->segment(1));
+				$where_sidebar_url  = array('sidebar_url' => $this->uri->segment(1));
 				$sidebar_lv1_active = $controller->select_config_one('sidebar', 'sidebar_parent', $where_sidebar_url);
 				foreach ($sidebar_lv1 as $r_sidebar_lv1){?>
 					<li <?php if ($r_sidebar_lv1->sidebar_id==$sidebar_lv1_active->sidebar_parent){
@@ -61,10 +61,16 @@
 									  </a>
 									</li>
 
-								<?}?>
+								<?php } ?>
 						</ul>
 					</li>
-				<? } ?>
+				<?php } ?>
+        <li class="nav-item">
+          <a href="<?php echo base_url('payment')?>" class="nav-link nav-toggle">
+            <i class="fa fa-money"></i>
+            <span class="title">Payment</span>
+          </a>
+        </li>
 		  </ul>
 		  <!-- END SIDEBAR MENU -->
 		  <!-- END SIDEBAR MENU -->
