@@ -263,6 +263,7 @@ class Payment_c extends MY_Controller{
 		'title_page' 	  => 'Pembayaran',
 		'title_page2' 	=> 'Print Pembayaran',
 		);
+
     $this->load->library('pdf');
 
     $this->pdf->set_paper('A4', 'landscape');
