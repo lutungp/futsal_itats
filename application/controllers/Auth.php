@@ -62,6 +62,9 @@ class Auth extends MY_Controller {
 
 
 		$status = 0;
+		$cek = $this->Auth_model->cek_login("user",$where)->num_rows();
+		$user_type = $this->select_config_one('user', 'user_type', $where);
+		$branch_id = $this->select_config_one('user', 'branch', $where);
 
 		if ($cek > 0) {
 			if ($username == $this->session->userdata('nama')) {

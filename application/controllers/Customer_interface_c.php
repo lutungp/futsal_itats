@@ -161,11 +161,11 @@ class Customer_interface_c extends MY_Controller{
 
     if ($this->create_config('building_booking', $data_booking))
     {
-      $data['status'] = '204';
-    } else {
       $this->send_email();
       $data['status'] = '200';
       $data['customer'] = $customer_id;
+    } else {
+      $data['status'] = '204';
     }
 
     echo json_encode($data);

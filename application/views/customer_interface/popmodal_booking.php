@@ -221,6 +221,7 @@
            dataType : "json",
            success  : function(data)
            {
+            //  alert();
              $('#booking_popmodal').modal('hide');
              bookingstorage = [];
           },error   : function(){
