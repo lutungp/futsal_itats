@@ -45,11 +45,11 @@ CREATE TABLE `book_payment` (
   `book_payment_bank` int(11) DEFAULT NULL,
   `book_payment_bank_no` int(11) DEFAULT NULL,
   PRIMARY KEY (`book_payment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `book_payment` */
 
-insert  into `book_payment`(`book_payment_id`,`book_payment_code`,`building_booking_code`,`book_payment_date`,`book_payment_total`,`book_payment_nominal`,`book_payment_change`,`book_payment_method`,`book_payment_bank`,`book_payment_bank_no`) values (1,'PAY/14-05-2017/123456567846/2/2','123456567846','2017-05-14 20:05:35',100000,120000,20000,0,0,0);
+insert  into `book_payment`(`book_payment_id`,`book_payment_code`,`building_booking_code`,`book_payment_date`,`book_payment_total`,`book_payment_nominal`,`book_payment_change`,`book_payment_method`,`book_payment_bank`,`book_payment_bank_no`) values (1,'PAY/14-05-2017/123456567846/2/2','123456567846','2017-05-14 20:05:35',100000,120000,20000,0,0,0),(2,'PAY/16-05-2017/05/24/2017/10/12/2/2/2/2','05/24/2017/10/12/2/2','2017-05-16 14:05:18',100000,100000,0,0,0,0);
 
 /*Table structure for table `branches` */
 
@@ -87,12 +87,14 @@ CREATE TABLE `building_booking` (
   `building_booking_time_2` decimal(10,0) DEFAULT NULL,
   `building_booking_status` int(11) DEFAULT NULL,
   `building_booking_status_desc` text,
+  `building_bukti_upload_date` datetime DEFAULT NULL,
+  `building_bukti_img` text,
   PRIMARY KEY (`building_booking_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 /*Data for the table `building_booking` */
 
-insert  into `building_booking`(`building_booking_id`,`building_booking_code`,`building_booking_building`,`building_booking_branch`,`building_booking_customer`,`building_booking_user`,`building_booking_date`,`building_booking_date_for`,`building_booking_time_1`,`building_booking_time_2`,`building_booking_status`,`building_booking_status_desc`) values (2,NULL,2,2,11,0,'2017-05-06 00:00:00','2017-05-08',12,14,2,'Belum Ada Konfirmasi'),(3,NULL,2,2,12,0,'2017-05-06 00:00:00','2017-05-08',0,0,1,'Belum Ada Konfirmasi'),(4,NULL,2,2,13,0,'2017-05-06 00:00:00','2017-05-08',15,17,1,'Belum Ada Konfirmasi'),(5,NULL,2,2,14,0,'2017-05-06 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi'),(6,NULL,2,2,15,0,'2017-05-06 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi'),(8,NULL,2,2,17,0,'2017-05-06 00:00:00','2017-05-09',8,9,1,'Belum Ada Konfirmasi'),(9,NULL,3,2,18,0,'2017-05-06 00:00:00','2017-05-09',8,10,2,'Belum Ada Konfirmasi'),(13,NULL,2,2,22,0,'2017-05-06 00:00:00','2017-05-13',8,10,1,'Belum Ada Konfirmasi'),(14,NULL,5,2,23,0,'2017-05-06 00:00:00','2017-05-09',11,13,1,'Belum Ada Konfirmasi'),(15,NULL,5,2,24,0,'2017-05-06 00:00:00','2017-05-09',11,13,1,'Belum Ada Konfirmasi'),(16,NULL,5,2,25,0,'2017-05-06 00:00:00','2017-05-23',13,15,1,'Belum Ada Konfirmasi'),(17,NULL,2,2,26,0,'2017-05-06 00:00:00','2017-05-10',12,13,1,'Belum Ada Konfirmasi'),(19,NULL,2,2,28,0,'2017-05-06 00:00:00','2017-05-09',12,13,1,'Belum Ada Konfirmasi'),(20,NULL,5,2,29,0,'2017-05-11 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi'),(22,'12345656784',2,2,32,0,'2017-05-14 00:00:00','2017-05-17',8,10,1,'Belum Ada Konfirmasi'),(23,'123456567846',2,2,33,0,'2017-05-14 00:00:00','2017-05-14',15,17,3,'Belum Ada Konfirmasi'),(24,'12345656787',2,2,34,0,'2017-05-14 00:00:00','2017-05-25',8,10,1,'Belum Ada Konfirmasi');
+insert  into `building_booking`(`building_booking_id`,`building_booking_code`,`building_booking_building`,`building_booking_branch`,`building_booking_customer`,`building_booking_user`,`building_booking_date`,`building_booking_date_for`,`building_booking_time_1`,`building_booking_time_2`,`building_booking_status`,`building_booking_status_desc`,`building_bukti_upload_date`,`building_bukti_img`) values (2,NULL,2,2,11,0,'2017-05-06 00:00:00','2017-05-08',12,14,2,'Belum Ada Konfirmasi',NULL,NULL),(3,NULL,2,2,12,0,'2017-05-06 00:00:00','2017-05-08',0,0,2,'Belum Ada Konfirmasi',NULL,NULL),(5,NULL,2,2,14,0,'2017-05-06 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(6,NULL,2,2,15,0,'2017-05-06 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(8,NULL,2,2,17,0,'2017-05-06 00:00:00','2017-05-09',8,9,1,'Belum Ada Konfirmasi',NULL,NULL),(9,NULL,3,2,18,0,'2017-05-06 00:00:00','2017-05-09',8,10,2,'Belum Ada Konfirmasi',NULL,NULL),(13,NULL,2,2,22,0,'2017-05-06 00:00:00','2017-05-13',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(14,NULL,5,2,23,0,'2017-05-06 00:00:00','2017-05-09',11,13,1,'Belum Ada Konfirmasi',NULL,NULL),(15,NULL,5,2,24,0,'2017-05-06 00:00:00','2017-05-09',11,13,1,'Belum Ada Konfirmasi',NULL,NULL),(16,NULL,5,2,25,0,'2017-05-06 00:00:00','2017-05-23',13,15,1,'Belum Ada Konfirmasi',NULL,NULL),(17,NULL,2,2,26,0,'2017-05-06 00:00:00','2017-05-10',12,13,1,'Belum Ada Konfirmasi',NULL,NULL),(19,NULL,2,2,28,0,'2017-05-06 00:00:00','2017-05-09',12,13,1,'Belum Ada Konfirmasi',NULL,NULL),(20,NULL,5,2,29,0,'2017-05-11 00:00:00','2017-05-10',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(22,'12345656784',2,2,32,0,'2017-05-14 00:00:00','2017-05-17',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(23,'123456567846',2,2,33,0,'2017-05-14 00:00:00','2017-05-14',15,17,3,'Belum Ada Konfirmasi',NULL,NULL),(24,'12345656787',2,2,34,0,'2017-05-14 00:00:00','2017-05-25',8,10,1,'Belum Ada Konfirmasi',NULL,NULL),(26,'05/25/2017/11/13/2/2',2,2,36,0,'2017-05-16 00:00:00','2017-05-25',11,13,1,'Belum Ada Konfirmasi',NULL,NULL),(27,'05/31/2017/8/12/2/2',2,2,37,0,'2017-05-16 00:00:00','2017-05-31',8,12,1,'Belum Ada Konfirmasi',NULL,NULL),(28,'05/25/2017/null/16/2/2',2,2,38,0,'2017-05-16 00:00:00','2017-05-25',0,16,1,'Belum Ada Konfirmasi',NULL,NULL),(29,'05/24/2017/10/12/2/2',2,2,39,0,'2017-05-16 00:00:00','2017-05-24',10,12,3,'Belum Ada Konfirmasi',NULL,NULL);
 
 /*Table structure for table `buildings` */
 
@@ -126,11 +128,11 @@ CREATE TABLE `customers` (
   `customer_email` text,
   `customer_status` int(11) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 /*Data for the table `customers` */
 
-insert  into `customers`(`customer_id`,`customer_name`,`customer_nik`,`customer_address`,`customer_phone`,`customer_email`,`customer_status`) values (1,'Lintang Permana','qw12','Pacar Kembang','1221312',NULL,1),(10,'agung','9048504','panduk','245720',NULL,1),(11,'ABDUL','572093','PANJANG','48759',NULL,1),(12,'Reswidya','357293847','pacarkembang','29505',NULL,1),(13,'galang dio','472309572309','pacarkembang','7523570',NULL,1),(14,'wahyu jum','59284579','setro','572987',NULL,1),(15,'wahyu jum','59284579','setro','572987',NULL,1),(16,'nonong moncrot','83947','pacar kempit','463469',NULL,1),(17,'nonong moncrot','83947','pacar kempit','463469',NULL,1),(18,'angela','7237','kedurus','478237',NULL,1),(19,'mbhpong','475894','bronggalan','9863498',NULL,1),(20,'aliyudin','65293864983','mesjid','623984',NULL,1),(21,'hasan','346890819','mojokerto','3274923',NULL,1),(22,'gogon','395209','meduro','5709',NULL,1),(23,'mulus','45689','jojoran','45689',NULL,1),(24,'mulus','45689','jojoran','45689',NULL,1),(25,'saropah','734093','meduk','23409237',NULL,1),(26,'tompel','245029','gedangan','85209',NULL,1),(27,'wedus','58028','kandang wedus','8594200',NULL,1),(28,'jojon','5298529','jojon omah','24752',NULL,1),(29,'NUR','857293','karangasem','9258',NULL,1),(30,'NUR','857293','karangasem','9258',NULL,1),(31,'Malida','273128','Nganjuk','879872',NULL,1),(32,'Malida','273128','Nganjuk','879872',NULL,1),(33,'holo','921-98','jalac','930983',NULL,1),(34,'firman','293847327','kos kosan','23049723',NULL,1),(35,'dio','756','6587','698',NULL,1);
+insert  into `customers`(`customer_id`,`customer_name`,`customer_nik`,`customer_address`,`customer_phone`,`customer_email`,`customer_status`) values (1,'Lintang Permana','qw12','Pacar Kembang','1221312','lntngp19@gmail.com',1),(10,'agung','9048504','panduk','245720','agung@gmail.com',1),(11,'ABDUL','572093','PANJANG','48759',NULL,1),(12,'Reswidya','357293847','pacarkembang','29505',NULL,1),(13,'galang dio','472309572309','pacarkembang','7523570',NULL,1),(14,'wahyu jum','59284579','setro','572987',NULL,1),(15,'wahyu jum','59284579','setro','572987',NULL,1),(16,'nonong moncrot','83947','pacar kempit','463469',NULL,1),(17,'nonong moncrot','83947','pacar kempit','463469',NULL,1),(18,'angela','7237','kedurus','478237',NULL,1),(19,'mbhpong','475894','bronggalan','9863498',NULL,1),(20,'aliyudin','65293864983','mesjid','623984',NULL,1),(21,'hasan','346890819','mojokerto','3274923',NULL,1),(22,'gogon','395209','meduro','5709',NULL,1),(23,'mulus','45689','jojoran','45689',NULL,1),(24,'mulus','45689','jojoran','45689',NULL,1),(25,'saropah','734093','meduk','23409237',NULL,1),(26,'tompel','245029','gedangan','85209',NULL,1),(27,'wedus','58028','kandang wedus','8594200',NULL,1),(28,'jojon','5298529','jojon omah','24752',NULL,1),(29,'NUR','857293','karangasem','9258',NULL,1),(30,'NUR','857293','karangasem','9258',NULL,1),(31,'Malida','273128','Nganjuk','879872',NULL,1),(32,'Malida','273128','Nganjuk','879872',NULL,1),(33,'holo','921-98','jalac','930983',NULL,1),(34,'firman','293847327','kos kosan','23049723',NULL,1),(35,'dio','756','6587','698',NULL,1),(36,'Aaa','12345','asdfghj','123456789',NULL,1),(37,'futsal','752085023','futsal','4927802',NULL,1),(38,'udin','43984930','mojokerto','42390480',NULL,1),(39,'agus','12345','alamat','123456',NULL,1);
 
 /*Table structure for table `items` */
 
@@ -266,7 +268,7 @@ CREATE TABLE `sidebar` (
   `sidebar_url` varchar(200) NOT NULL,
   `sidebar_icon` text NOT NULL,
   PRIMARY KEY (`sidebar_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sidebar` */
 
