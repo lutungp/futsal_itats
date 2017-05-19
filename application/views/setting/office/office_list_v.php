@@ -59,7 +59,7 @@
                     <!-- END CONTENT HEADER -->
                     <!-- BEGIN CARDS -->
                     <div class="row margin-bottom-20">
-                        <div class="col-lg-3 col-md-6">
+                        <!-- <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="card-icon">
                                     <i class="icon-user-follow font-red-sunglo theme-font"></i>
@@ -72,8 +72,8 @@
                                         <br> to lose yourself in the service of others </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
+                        </div> -->
+                        <!-- <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="card-icon">
                                     <i class="icon-trophy font-green-haze theme-font"></i>
@@ -86,8 +86,8 @@
                                         <br> to lose yourself in the service of others </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
+                        </div> -->
+                        <!-- <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="card-icon">
                                     <i class="icon-basket font-purple-wisteria theme-font"></i>
@@ -100,8 +100,8 @@
                                         <br> to lose yourself in the service of others </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
+                        </div> -->
+                        <!-- <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="card-icon">
                                     <i class="icon-layers font-blue theme-font"></i>
@@ -114,11 +114,11 @@
                                         <br> to lose yourself in the service of others </span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- END CARDS -->
                     <!-- BEGIN TEXT & VIDEO -->
-                    <div class="row margin-bottom-40">
+                    <!-- <div class="row margin-bottom-40">
                         <div class="col-lg-6">
                             <div class="portlet light about-text">
                                 <h4>
@@ -165,15 +165,15 @@
                         <div class="col-lg-6">
                             <iframe src="http://player.vimeo.com/video/22439234" style="width:100%; height:500px;border:0" allowfullscreen> </iframe>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END TEXT & VIDEO -->
                     <!-- BEGIN MEMBERS SUCCESS STORIES -->
-                    <div class="row margin-bottom-40 stories-header" data-auto-height="true">
+                    <!-- <div class="row margin-bottom-40 stories-header" data-auto-height="true">
                         <div class="col-md-12">
                             <h1>Members Success Stories</h1>
                             <h2>Life is either a great adventure or nothing</h2>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row margin-bottom-20 stories-cont">
                         <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
@@ -183,31 +183,40 @@
                                     <span> Mark Wahlberg </span>
                                 </div>
                                 <div class="desc">
-                                    <span> We are at our very best, and we are happiest, when we are fully engaged in work we enjoy on the journey toward the goal we've established for ourselves. </span>
+                                    <span> We are at our very best, and we are happiest,
+                                      when we are fully engaged in work we enjoy on the journey
+                                      toward the goal we've established for ourselves. </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="photo">
-                                    <img src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/pages/media/users/teambg2.jpg')?>" alt="" class="img-responsive" /> </div>
+                                    <img src="<?php echo base_url('assets/img/FUTSAL1.jpg')?>"
+                                    alt="" class="img-responsive" style="width: 100%;height: 312px;"/> </div>
                                 <div class="title">
-                                    <span> Lindsay Lohan </span>
+                                    <span> Tournament </span>
                                 </div>
                                 <div class="desc">
-                                    <span> Do what you love to do and give it your very best. Whether it's business or baseball, or the theater, or any field. If you don't love what you're doing and you can't give it your best, get out of it. </span>
+                                    <span> Do what you love to do and give it your very best.
+                                      Whether it's business or baseball, or the theater, or any
+                                      field. If you don't love what you're doing and you can't give it
+                                      your best, get out of it. </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="portlet light">
                                 <div class="photo">
-                                    <img src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/pages/media/users/teambg5.jpg')?>" alt="" class="img-responsive" /> </div>
+                                    <img src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/pages/media/users/teambg5.jpg')?>"
+                                    alt="" class="img-responsive" /> </div>
                                 <div class="title">
                                     <span> John Travolta </span>
                                 </div>
                                 <div class="desc">
-                                    <span> To be nobody but yourself in a world which is doing its best, to make you everybody else means to fight the hardest battle which any human being can fight; and never stop fighting. </span>
+                                    <span> To be nobody but yourself in a world which is doing its best,
+                                      to make you everybody else means to fight the hardest battle which
+                                      any human being can fight; and never stop fighting. </span>
                                 </div>
                             </div>
                         </div>
@@ -219,19 +228,21 @@
                                     <span> Tom Brady </span>
                                 </div>
                                 <div class="desc">
-                                    <span> You have to accept whatever comes and the only important thing is that you meet it with courage and with the best that you have to give. Never give up, never surrender. Go all out or gain nothing. </span>
+                                    <span> You have to accept whatever comes and the only important thing is
+                                      that you meet it with courage and with the best that you have to give.
+                                      Never give up, never surrender. Go all out or gain nothing. </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row margin-bottom-40 stories-footer">
+                    <!-- <div class="row margin-bottom-40 stories-footer">
                         <div class="col-md-12">
                             <button type="button" class="btn btn-danger">SEE MORE STORIES</button>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END MEMBERS SUCCESS STORIES -->
                     <!-- BEGIN LINKS BLOCK -->
-                    <div class="row about-links-cont" data-auto-height="true">
+                    <!-- <div class="row about-links-cont" data-auto-height="true">
                         <div class="col-md-6 about-links">
                             <div class="row">
                                 <div class="col-sm-6 about-links-item">
@@ -315,7 +326,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="about-image" style="background: url(<?php echo base_url('assets/metronic_v4.5.6/theme/assets/pages/media/works/img4.jpg')?>) center no-repeat;"></div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END LINKS BLOCK -->
                 </div>
                 <!-- END CONTENT BODY -->

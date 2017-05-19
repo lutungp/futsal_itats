@@ -19,7 +19,11 @@ class Customer_interface_m extends CI_Model{
 
     $query = $this->db->get();
     return $query;
+  }
 
+  function cek_login($table, $where){
+    $query = $this->db->get_where($table,$where);
+    return $query;
   }
 
 }

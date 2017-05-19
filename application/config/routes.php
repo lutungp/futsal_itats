@@ -49,7 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Customer_interface_c';
+$route['default_controller']              = 'Customer_interface_c';
+$route['customerformdetail/(:any)']              = 'Customer_interface_c/customerformdetailindex/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -68,9 +70,10 @@ $route['payment/print/(:num)']            = 'Payment_c/printbookpayment/$i';
 
 $route['customer_list']                   = 'Customer_c';
 
+
 $route['user_list']									      = 'User_c';
 $route['user_form']					 				      = 'User_c/user_form';
-$route['user_form_edit/(:num)/(:num)/(:num)']           = 'User_c/user_edit/$1/$2/$3';
+$route['user_form_edit/(:any)']           = 'User_c/user_edit/$1';
 
 $route['user_type_list']									= 'User_type_c';
 $route['user_type_form']					 				= 'User_type_c/user_type_form';

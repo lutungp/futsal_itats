@@ -15,6 +15,11 @@
                                       <i class="fa fa-futbol-o font-blue-hoki"></i>
                                       <span class="caption-subject font-blue-hoki bold uppercase">Form Booking Lapangan</span>
                                   </div>
+                                  <div class="caption-right">
+                                    <a type="button" onclick="logincutomer()">
+                                      <span class="caption-subject font-blue-hoki bold uppercase">LOG IN</span>
+                                    </a>
+                                  </div>
                               </div>
                               <div class="portlet-body form">
                                   <!-- BEGIN FORM-->
@@ -69,6 +74,13 @@
             </div>
         </div>
         <div class="modal fade" id="booking_popmodal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <div class="modal fade" id="logincustomer_popmodal">
           <div class="modal-dialog">
             <div class="modal-content">
 
@@ -216,10 +228,12 @@ $(document).ready(function(){
 
         }
 
-        // $('.btn-booking').on('click', function () {
-        //   alert();
-        // });
-
   });
+
+  function logincutomer()
+  {
+    var url = "<?php echo base_url()?>Customer_interface_c/logincustomer_popmodal";
+    $('#logincustomer_popmodal').modal('show').find('.modal-content').load(url);
+  }
 
 </script>

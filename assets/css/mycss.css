@@ -11,6 +11,21 @@ tr.text-center {
     background-color: #000;
 }
 
+
+.portlet>.portlet-title>.caption-right {
+    float: right;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 10px 0;
+}
+
+/*.right {
+  right: 20px;
+  text-align: right;
+  float: right;
+}*/
+
 /*#futsal_background.page-content
 {
   background-image:url('../img/Futsal_boots.jpg')!important;

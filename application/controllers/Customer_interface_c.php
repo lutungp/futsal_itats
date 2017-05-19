@@ -153,7 +153,9 @@ class Customer_interface_c extends MY_Controller{
                   'building_booking_time_1'       => $i_jam_1,
                   'building_booking_time_2'       => $i_jam_2,
                   'building_booking_status'       => 1,
-                  'building_booking_status_desc'  => 'Belum Ada Konfirmasi'
+                  'building_booking_status_desc'  => 'Belum Ada Konfirmasi',
+                  'building_bukti_upload_date'    => '',
+                  'building_bukti_img'            => ''
                 );
 
     // $this->create_config('building_booking', $data_booking);
@@ -201,5 +203,112 @@ class Customer_interface_c extends MY_Controller{
   {
     $i_code = $tanggal."/".$jam1."/".$jam2."/".$i_building."/".$i_branch;
     return $i_code;
+  }
+
+  function logincustomer_popmodal()
+  {
+    $this->load->view('customer_interface/logincustomer_popmodal');
+  }
+
+  public function checkcustomerlogin()
+	{
+		$i_username = $this->input->post('i_username');
+		$i_email = $this->input->post('i_email');
+
+		$where = array(
+			'customer_name' => $i_username,
+			'customer_email'    => $i_email
+			);
+
+		$status = 0;
+		$cek = $this->Customer_interface_m->cek_login("customers",$where)->num_rows();
+    $customer_id = $this->select_config_one('customers', 'customer_id', $where);
+    $data = array();
+    $data['customer_id'] = $customer_id->customer_id;
+		if ($cek > 0) {
+			$data['status'] = '200';
+		} else {
+		  $data['status'] = '204';
+		}
+
+		echo json_encode($data);
+	}
+
+  function customerformdetailindex($customer_id)
+  {
+    $this->get_header_customer();
+    $this->customerformdetail($customer_id);
+    $this->get_footer_customer();
+  }
+
+  function customerformdetail($customer_id)
+  {
+    $select = "a.*, b.*, c.*, d.building_name";
+    $table = 'customers a';
+    $where = array('a.customer_id' => $customer_id);
+
+    $join['data'][] = array(
+					'table' => 'building_booking b',
+					'join'	=> 'b.building_booking_customer = a.customer_id',
+					'type'	=> 'left'
+				);
+
+    $join['data'][] = array(
+          'table' => 'branches c',
+          'join'	=> 'c.branch_id = b.building_booking_branch',
+          'type'	=> 'left'
+        );
+
+    $join['data'][] = array(
+          'table' => 'buildings d',
+          'join'	=> 'd.building_id = b.building_booking_building',
+          'type'	=> 'left'
+        );
+
+    $data = array(
+      'customer' => $this->Global_m->globalselect($select, $table, $join, NULL, $where)->row(),
+      'action'   => "Customer_interface_c/savebuktipembayaran"
+     );
+    //  echo $this->db->last_query();
+    $this->load->view('customer_interface/customerformdetail', $data);
+  }
+
+  function savebuktipembayaran()
+  {
+    $customer_id = $this->input->post('customer_id');
+    $i_img = $this->input->post('i_img');
+    $tanggal = date("Y-m-d H:m:s");
+
+    $where = array(
+      'customer_id' => $customer_id,
+      'building_booking_status' => 1
+    );
+
+    $data = array(
+      'building_booking_status'      => 4,
+      'building_booking_status_desc' => 'sudah mengirim bukti',
+      'building_bukti_upload_date'   => $tanggal,
+      'building_bukti_img'           => $i_img
+   );
+
+   $i_mg_file = isset($_FILES['i_img']['name']) ? $_FILES['i_img']['name']: " ";
+
+   $config['upload_path']          = './assets/img/bukti_booking/';
+   $config['allowed_types']        = 'gif|jpg|png|exe|xls|doc|docx|xlsx|rar|zip';
+   $config['max_size']             = '8192';
+   $config['remove_spaces']        = TRUE;  //it will remove all spaces
+
+   $this->load->library('upload', $config);
+
+   if ($i_mg_file) { $this->upload->do_upload('i_img');}
+   $update = $this->update_config('building_booking', $data, $where);
+   if ($update) {
+     $data['status'] = '200';
+   } else {
+     $data['status'] = '204';
+   }
+
+   echo json_encode($data);
+
   }
 }
