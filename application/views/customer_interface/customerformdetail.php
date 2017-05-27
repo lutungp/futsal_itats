@@ -47,13 +47,17 @@
                           <input type="text" class="form-control" value="<?php echo $customer->building_name?>" readonly/>
                       </div>
                       <div class="form-group">
+                          <label class="control-label">Tanggal</label>
+                          <input type="text" class="form-control" value="<?php echo $customer->building_booking_date_for?>" readonly/>
+                      </div>
+                      <div class="form-group">
                         <label for="">Jam Booking</label>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="form-control" value="<?php echo $customer->building_booking_date_for?> - <?php echo $customer->building_booking_time_1?>.00" readonly/>
+                            <input type="text" class="form-control" value="<?php echo $customer->building_booking_time_1?>.00" readonly/>
                           </div>
                           <div class="col-md-6">
-                            <input type="text" class="form-control" value="<?php echo $customer->building_booking_date_for?> - <?php echo $customer->building_booking_time_2?>.00" readonly/>
+                            <input type="text" class="form-control" value="<?php echo $customer->building_booking_time_2?>.00" readonly/>
                           </div>
                         </div>
                       </div>
@@ -99,7 +103,8 @@ $("#formbookingdetail").submit(function(e) {
            data: $("#formbookingdetail").serialize(), // serializes the form's elements.
            success: function(data)
            {
-               alert(data); // show response from the php script.
+               alert("Bukti Pembayaran Telah Disimpan"); // show response from the php script.
+               window.close();
            }
          });
 

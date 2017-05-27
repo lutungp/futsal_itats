@@ -109,79 +109,96 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
         data    : {branch_id:branch_id},
         dataType: "json",
         success : function(data){
-          // bookinglistcompleted
+          // no
           $('#bookinglistpending').empty();
           $('#bookinglistcompleted').empty();
-
+          var html = [];
+          var htmlconfirm = [];
           for (var i = 0; i < data.length; i++) {
-            if (data[i].building_booking_status == 1) {
-              $('#bookinglistpending').append('\
-              <div class="mt-actions">\
-              <div class="mt-action">\
-              <div class="mt-action-img">\
-              </div>\
-              <div class="mt-action-body">\
-              <div class="mt-action-row">\
-              <div class="mt-action-info ">\
-              <div class="mt-action-icon ">\
-              <i class="icon-magnet"></i>\
-              </div>\
-              <div class="mt-action-details ">\
-              <span class="mt-action-author">'+data[i].customer_name+'</span>\
-              <p class="mt-action-desc">Dummy text of the printing</p>\
-              </div>\
-              </div>\
-              <div class="mt-action-datetime ">\
-              <span class="mt-action-date">'+data[i].building_booking_date_for+'</span>\
-              <span class="mt-action-dot bg-green"></span>\
-              <span class="mt=action-time">'+data[i].building_booking_time_1+'.00\
-              - '+data[i].building_booking_time_2+'.00</span>\
-              </div>\
-              <div class="mt-action-buttons ">\
-              <div class="btn-group btn-group-circle">\
-              <button type="button" data-building-booking-id="'+data[i].building_booking_id+'"\
-              class="btn btn-outline green btn-sm btn-approve" onclick="btn_approve(this);">Appove</button>\
-              <button type="button" data-building-booking-id="'+data[i].building_booking_id+'"\
-              class="btn btn-outline red btn-sm" onclick="btn_remove(this);">Reject</button>\
-              </div>\
-              </div>\
-              </div>\
-              </div>\
-              </div>\
-              </div>');
-            }
-
-            if (data[i].building_booking_status == 2) {
-              $('#bookinglistcompleted').append('\
-              <div class="mt-actions">\
-              <div class="mt-action">\
-              <div class="mt-action-img">\
-              </div>\
-              <div class="mt-action-body">\
-              <div class="mt-action-row">\
-              <div class="mt-action-info ">\
-              <div class="mt-action-icon ">\
-              <i class="icon-magnet"></i>\
-              </div>\
-              <div class="mt-action-details ">\
-              <span class="mt-action-author">'+data[i].customer_name+'</span>\
-              <p class="mt-action-desc">Dummy text of the printing</p>\
-              </div>\
-              </div>\
-              <div class="mt-action-datetime ">\
-              <span class="mt-action-date">'+data[i].building_booking_date_for+'</span>\
-              <span class="mt-action-dot bg-green"></span>\
-              <span class="mt=action-time">'+data[i].building_booking_time_1+'.00\
-              - '+data[i].building_booking_time_2+'.00</span>\
-              </div>\
-              <div class="mt-action-buttons ">\
-              <div class="btn-group btn-group-circle">\
-              </div>\
-              </div>\
-              </div>\
-              </div>\
-              </div>\
-              </div>');
+            if (data[i].building_booking_status == 1 || data[i].building_booking_status == 2) {
+              html +='<a><div class="mt-actions">';
+              html +='<div class="mt-action">';
+              html +='<div class="mt-action-img">';
+              html +='</div>';
+              html +='<div class="mt-action-body">';
+              html +='<div class="mt-action-row">';
+              html +='<div class="mt-action-info ">';
+              html +='<div class="mt-action-icon ">';
+              html +='<i class="icon-magnet"></i>';
+              html +='</div>';
+              html +='<div class="mt-action-details ">';
+              html +='<span class="mt-action-author">'+data[i].customer_name+'</span>';
+              if (data[i].building_booking_status == 2) {
+                html +='<p class="mt-action-desc">Sudah Ada komfirmasi</p>';
+              } else {
+                html +='<p class="mt-action-desc">Dummy text of the printing</p>';
+              }
+              html +='</div>';
+              html +='</div>';
+              html +='<div class="mt-action-datetime ">';
+              html +='<span class="mt-action-date">'+data[i].building_booking_date_for+'</span>';
+              html +='<span class="mt-action-dot bg-green"></span>';
+              html +='<span class="mt=action-time">'+data[i].building_booking_time_1+'.00';
+              html +='- '+data[i].building_booking_time_2+'.00</span>';
+              html +='</div>';
+              html +='<div class="mt-action-buttons">';
+              html +='<div class="btn-group btn-group-circle" style="width:300px; left: 120px;">';
+              html +='<button type="button" data-building-booking-id="'+data[i].building_booking_id+'"';
+              html +='class="btn btn-outline red btn-sm" onclick="btn_remove(this);">Reject</button>';
+              html +='<button type="button" data-building-booking-id="'+data[i].building_booking_id+'"';
+              if (data[i].building_booking_status == 2 || data[i].building_booking_status == 3){
+                enabled = "";
+                html +='class="btn btn-outline red btn-sm" onclick="btn_view(this);" '+enabled+'>view</button>';
+              } else {
+                enabled = "disabled";
+                html +='class="btn btn-outline red btn-sm" onclick="btn_view(this);" '+enabled+'>view</button>';
+              }
+              html +='<button type="button" data-building-booking-id="'+data[i].building_booking_id+'"';
+              if (data[i].building_booking_status == 3){
+                enabled = "";
+                html +='class="btn btn-outline green btn-sm btn-approve" onclick="btn_approve(this);" '+enabled+'>Appove</button>';
+              } else {
+                enabled = "disabled";
+                html +='class="btn btn-outline green btn-sm btn-approve" onclick="btn_approve(this);" '+enabled+'>Appove</button>';
+              }
+              html +='</div>';
+              html +='</div>';
+              html +='</div>';
+              html +='</div>';
+              html +='</div>';
+              html +='</div>';
+              $('#bookinglistpending').append(html);
+            } else if (data[i].building_booking_status == 4) {
+              htmlconfirm += '<div class="mt-actions">';
+              htmlconfirm += '<div class="mt-action">';
+              htmlconfirm += '<div class="mt-action-img">';
+              htmlconfirm += '</div>';
+              htmlconfirm += '<div class="mt-action-body">';
+              htmlconfirm += '<div class="mt-action-row">';
+              htmlconfirm += '<div class="mt-action-info ">';
+              htmlconfirm += '<div class="mt-action-icon ">';
+              htmlconfirm += '<i class="icon-magnet"></i>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '<div class="mt-action-details ">';
+              htmlconfirm += '<span class="mt-action-author">'+data[i].customer_name+'</span>';
+              htmlconfirm += '<p class="mt-action-desc">Dummy text of the printing</p>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '<div class="mt-action-datetime ">';
+              htmlconfirm += '<span class="mt-action-date">'+data[i].building_booking_date_for+'</span>';
+              htmlconfirm += '<span class="mt-action-dot bg-green"></span>';
+              htmlconfirm += '<span class="mt=action-time">'+data[i].building_booking_time_1+'.00';
+              htmlconfirm += '- '+data[i].building_booking_time_2+'.00</span>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '<div class="mt-action-buttons ">';
+              htmlconfirm += '<div class="btn-group btn-group-circle">';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              htmlconfirm += '</div>';
+              $('#bookinglistcompleted').append(htmlconfirm);
             }
           }
         }
@@ -232,6 +249,10 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
     });
   }
 
+  function btn_view(elem){
+    alert();
+  }
+
   function btn_remove(elem)
   {
     var booking_id = $(elem).attr('data-building-booking-id');
@@ -249,7 +270,7 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
   $(document).ready(function(){
   setInterval(function()
           {
-              // $.fn.getDataBook(branch_id_active);
+              $.fn.getDataBook(branch_id_active);
           }, 1000);
     });
 </script>

@@ -69,7 +69,7 @@ class Dashboard1 extends My_controller {
 		}
 
 		$query = $this->Global_m->globalselect($select, $table, $join, $where);
-
+		$data  = array();
 		foreach ($query->result() as $row) {
 			$data[] = array(
 				'building_booking_id' 					=> $row->building_booking_id,
@@ -93,7 +93,7 @@ class Dashboard1 extends My_controller {
 	function updatedatabook()
 	{
 			$booking_id 			= $this->input->post('booking_id');
-			$dataupdate 			= array('building_booking_status' => 2);
+			$dataupdate 			= array('building_booking_status' => 4);
 			$where_booking_id = array('building_booking_id' => $booking_id);
 
 			if($this->update_config('building_booking', $dataupdate, $where_booking_id))

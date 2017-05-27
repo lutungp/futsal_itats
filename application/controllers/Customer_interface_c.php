@@ -216,7 +216,7 @@ class Customer_interface_c extends MY_Controller{
 		$i_email = $this->input->post('i_email');
 
 		$where = array(
-			'customer_name' => $i_username,
+			'customer_name'     => $i_username,
 			'customer_email'    => $i_email
 			);
 
@@ -225,6 +225,7 @@ class Customer_interface_c extends MY_Controller{
     $customer_id = $this->select_config_one('customers', 'customer_id', $where);
     $data = array();
     $data['customer_id'] = $customer_id->customer_id;
+
 		if ($cek > 0) {
 			$data['status'] = '200';
 		} else {
@@ -280,12 +281,12 @@ class Customer_interface_c extends MY_Controller{
     $tanggal = date("Y-m-d H:m:s");
 
     $where = array(
-      'customer_id' => $customer_id,
+      'building_booking_customer' => $customer_id,
       'building_booking_status' => 1
     );
 
     $data = array(
-      'building_booking_status'      => 4,
+      'building_booking_status'      => 2,
       'building_booking_status_desc' => 'sudah mengirim bukti',
       'building_bukti_upload_date'   => $tanggal,
       'building_bukti_img'           => $i_img

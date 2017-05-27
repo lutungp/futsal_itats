@@ -198,7 +198,7 @@
                             </div>\
                             <div class="form-group">\
                               <label>Email</label>\
-                              <input type="email" id="i_mail" name="i_mail" class="form-control" required/>\
+                              <input type="email" id="i_email" name="i_email" class="form-control" required/>\
                             </div>\
                             ';
 

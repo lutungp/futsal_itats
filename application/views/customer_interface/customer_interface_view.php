@@ -107,7 +107,7 @@ $(document).ready(function(){
           var lap_length = [];
           var length = '';
 
-          $.post( base_url+'Customer_interface_c/get_lapangan', {branch_id: branch_id}, function(data){
+          $.post("<?php echo base_url()?>Customer_interface_c/get_lapangan", {branch_id: branch_id}, function(data){
             $('#box_lapangan').empty();
             $('.content4').empty();
             length = 0;
