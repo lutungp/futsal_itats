@@ -20,7 +20,7 @@
                         <span class="caption-subject font-blue-madison bold uppercase">Profile Booking</span>
                     </div>
                 </div>
-                <form id="formbookingdetail" class="" action="<?php echo $action?>" method="post">
+                <form id="formbookingdetail" class="" action="<?php echo $action?>" method="post" enctype="multipart/form-data">
                   <div class="portlet-body">
                     <div class="tab-content">
                         <!-- PERSONAL INFO TAB -->
@@ -65,8 +65,8 @@
                         <label for="">Upload Image Bukti Pembayaran</label>
                         <br>
                         <?php $img = isset($building_details->building_img ) ? $building_details->building_img : "img_not_found.png";?>
-                        <img src="<?php echo base_url('assets/img/buildings/'.$img)?>" alt="" id="img_preview">
-                        <input type="file" name="i_img" value="" onchange="readURL(this);">
+                        <img name="i_img" src="<?php echo base_url('assets/img/buildings/'.$img)?>" alt="" id="img_preview">
+                        <input type="file" id="i_img" name="i_img" value="" onchange="readURL(this);">
                       </div>
                       <div class="modal-footer">
                         <div class="margin-top-10">
@@ -96,15 +96,20 @@ function readURL(input) {
 }
 
 $("#formbookingdetail").submit(function(e) {
-
+var formData = new FormData($(this)[0]);
+  data.append('file', file);
     $.ajax({
            type: "POST",
-           url: "<?php echo base_url()?>Customer_interface_c/savebuktipembayaran",
-           data: $("#formbookingdetail").serialize(), // serializes the form's elements.
+           url: "<?php echo base_url()?>Booking-detail/savebuktipembayaran",
+           data: formData, // serializes the form's elements.
+           dataType:"json",
+           enctype: 'multipart/form-data',
+           contentType: false,
+           processData: false,
            success: function(data)
            {
                alert("Bukti Pembayaran Telah Disimpan"); // show response from the php script.
-               window.close();
+              //  window.close();
            }
          });
 

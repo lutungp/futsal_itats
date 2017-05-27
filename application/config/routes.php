@@ -54,6 +54,7 @@ $route['customerformdetail/(:any)']              = 'Customer_interface_c/custome
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['Booking-detail/savebuktipembayaran']     = 'Customer_interface_c/savebuktipembayaran';
 
 // my_controller
 // $route['Global/get_branch']					    	= 'MY_Controller/get_branch';
@@ -64,6 +65,7 @@ $route['admin/getDataBook']					      = 'Dashboard1/getdatabook';
 $route['admin/updateDataBook']            = 'Dashboard1/updatedatabook';
 $route['admin/deleteDataBook']            = 'Dashboard1/deletedataBook';
 $route['admin/getDataBooktoday']          = 'Dashboard1/getdatabooktoday';
+$route['admin/viewDatabook/(:any)']       = 'Dashboard1/viewdatabook/$1';
 
 $route['payment']                         = 'Payment_c';
 $route['payment/print/(:num)']            = 'Payment_c/printbookpayment/$i';

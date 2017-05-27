@@ -142,6 +142,8 @@ class Customer_interface_c extends MY_Controller{
 
     $customer_id = $this->Global_m->create_config('customers', $data_customer);
 
+
+
     $data_booking = array(
                   'building_booking_building'     => $i_building,
                   'building_booking_code'         => $i_code,
@@ -279,7 +281,6 @@ class Customer_interface_c extends MY_Controller{
     $customer_id = $this->input->post('customer_id');
     $i_img = $this->input->post('i_img');
     $tanggal = date("Y-m-d H:m:s");
-
     $where = array(
       'building_booking_customer' => $customer_id,
       'building_booking_status' => 1
@@ -293,7 +294,6 @@ class Customer_interface_c extends MY_Controller{
    );
 
    $i_mg_file = isset($_FILES['i_img']['name']) ? $_FILES['i_img']['name']: " ";
-
    $config['upload_path']          = './assets/img/bukti_booking/';
    $config['allowed_types']        = 'gif|jpg|png|exe|xls|doc|docx|xlsx|rar|zip';
    $config['max_size']             = '8192';
@@ -301,7 +301,7 @@ class Customer_interface_c extends MY_Controller{
 
    $this->load->library('upload', $config);
 
-   if ($i_mg_file) { $this->upload->do_upload('i_img');}
+   if ($i_mg_file) {$this->upload->do_upload('i_img');}
    $update = $this->update_config('building_booking', $data, $where);
    if ($update) {
      $data['status'] = '200';

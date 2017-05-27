@@ -151,6 +151,40 @@ class Dashboard1 extends My_controller {
 		echo json_encode($data);
 	}
 
+	function viewdatabook($id){
+		$select = "a.*, b.*, c.branch_name, d.building_name";
+		$table	= "building_booking a";
+
+		$join['data'][] = array(
+					'table' => 'customers b',
+					'join'	=> 'b.customer_id = a.building_booking_customer',
+					'type'	=> 'left'
+				);
+
+		$join['data'][] = array(
+					'table' => 'branches c',
+					'join'	=> 'c.branch_id = a.building_booking_branch',
+					'type'	=> 'left'
+				);
+
+		$join['data'][] = array(
+					'table' => 'buildings d',
+					'join'	=> 'd.building_id = a.building_booking_building',
+					'type'	=> 'left'
+				);
+
+		$where['data'][] = array(
+								'column' => 'a.building_booking_customer',
+								'param'	 => $id
+							);
+
+		$query = $this->Global_m->globalselect($select, $table, $join, $where)->row();
+		$data = array(
+			'building_booking_details' => $query
+		);
+		$this->load->view('buildingbookingdetails_popmodal', $data);
+	}
+
 	function popmodal_log_out()
 	{
 

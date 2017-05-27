@@ -96,6 +96,7 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+
 <script type="text/javascript">
 // mt-comments
 var branch_id_active = '<?php echo $this->branch_id; ?>';
@@ -250,7 +251,9 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
   }
 
   function btn_view(elem){
-    alert();
+    var booking_id = $(elem).attr('data-building-booking-id');
+    var url = "admin/viewDatabook/"+booking_id;
+    $('#medium_modal').modal('show').find('.modal-content').load(url);
   }
 
   function btn_remove(elem)
@@ -270,7 +273,7 @@ var branch_id_active = '<?php echo $this->branch_id; ?>';
   $(document).ready(function(){
   setInterval(function()
           {
-              $.fn.getDataBook(branch_id_active);
+              // $.fn.getDataBook(branch_id_active);
           }, 1000);
     });
 </script>
