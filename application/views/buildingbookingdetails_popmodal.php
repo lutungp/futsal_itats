@@ -5,7 +5,7 @@
 <div class="modal-body">
   <div class="row">
       <div class="col-md-12">
-          <div class="portlet light" style="margin-top: 50px;">
+          <div class="portlet light">
               <div class="portlet-title tabbable-line">
                   <div class="caption caption-md">
                       <i class="icon-globe theme-font hide"></i>
@@ -60,15 +60,8 @@
                       <input type="file" name="i_img" value="" onchange="readURL(this);">
                       <?php echo $img ?>
                     </div>
-                    <div class="modal-footer">
-                      <div class="margin-top-10">
-                          <button type="submit" class="btn green"> Submit </button>
-                          <button type="button" class="btn default" onclick="cancelform()"> Cancel </button>
-                      </div>
-                    </div>
                   </div>
               </div>
-              </form>
           </div>
       </div>
   </div>
@@ -77,3 +70,4 @@
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
   <button type="button" class="btn btn-primary">ACCEPT</button>
 </div>
+</form>
