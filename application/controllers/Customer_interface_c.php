@@ -279,19 +279,21 @@ class Customer_interface_c extends MY_Controller{
   function savebuktipembayaran()
   {
     $customer_id = $this->input->post('customer_id');
-    $i_img = $this->input->post('i_img');
+    $i_img = $_FILES["i_img"]["name"];
+
     $tanggal = date("Y-m-d H:m:s");
     $where = array(
       'building_booking_customer' => $customer_id,
       'building_booking_status' => 1
     );
 
-    $data = array(
+    $datasimpan = array(
       'building_booking_status'      => 2,
       'building_booking_status_desc' => 'sudah mengirim bukti',
       'building_bukti_upload_date'   => $tanggal,
       'building_bukti_img'           => $i_img
    );
+   $update = $this->Global_m->update_config('building_booking', $datasimpan, $where);
 
    $i_mg_file = isset($_FILES['i_img']['name']) ? $_FILES['i_img']['name']: " ";
    $config['upload_path']          = './assets/img/bukti_booking/';
@@ -302,12 +304,7 @@ class Customer_interface_c extends MY_Controller{
    $this->load->library('upload', $config);
 
    if ($i_mg_file) {$this->upload->do_upload('i_img');}
-   $update = $this->update_config('building_booking', $data, $where);
-   if ($update) {
-     $data['status'] = '200';
-   } else {
-     $data['status'] = '204';
-   }
+   $data['status'] = $update;
 
    echo json_encode($data);
 

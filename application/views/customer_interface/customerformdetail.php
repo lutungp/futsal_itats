@@ -20,7 +20,7 @@
                         <span class="caption-subject font-blue-madison bold uppercase">Profile Booking</span>
                     </div>
                 </div>
-                <form id="formbookingdetail" class="" action="<?php echo $action?>" method="post" enctype="multipart/form-data">
+                <form id="formbookingdetail" class="" method="post" enctype="multipart/form-data">
                   <div class="portlet-body">
                     <div class="tab-content">
                         <!-- PERSONAL INFO TAB -->
@@ -65,7 +65,7 @@
                         <label for="">Upload Image Bukti Pembayaran</label>
                         <br>
                         <?php $img = isset($building_details->building_img ) ? $building_details->building_img : "img_not_found.png";?>
-                        <img name="i_img" src="<?php echo base_url('assets/img/buildings/'.$img)?>" alt="" id="img_preview">
+                        <img name="" src="<?php echo base_url('assets/img/buildings/'.$img)?>" alt="" id="img_preview">
                         <input type="file" id="i_img" name="i_img" value="" onchange="readURL(this);">
                       </div>
                       <div class="modal-footer">
@@ -82,6 +82,11 @@
     </div>
 </div>
 <script type="text/javascript">
+function getfilename(){
+    var image = $("#i_img").val();
+    $("#img2").val(image);
+}
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -95,26 +100,50 @@ function readURL(input) {
     }
 }
 
-$("#formbookingdetail").submit(function(e) {
-var formData = new FormData($(this)[0]);
-  data.append('file', file);
-    $.ajax({
-           type: "POST",
-           url: "<?php echo base_url()?>Booking-detail/savebuktipembayaran",
-           data: formData, // serializes the form's elements.
-           dataType:"json",
-           enctype: 'multipart/form-data',
-           contentType: false,
-           processData: false,
-           success: function(data)
-           {
-               alert("Bukti Pembayaran Telah Disimpan"); // show response from the php script.
-              //  window.close();
-           }
-         });
+// $("#formbookingdetail").submit(function(e) {
+//   evt.preventDefault();
+//        var formData = new FormData($(this)[0]);
+//     $.ajax({
+//         url: "<?php echo base_url()?>Booking-detail/savebuktipembayaran",
+//         type: 'POST',
+//         data: formData,
+//         async: false,
+//         cache: false,
+//         contentType: false,
+//         enctype: 'multipart/form-data',
+//         processData: false,
+//         success: function (response) {
+//           alert(response);
+//         }
+//     });
+//     return false;
+// });
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-});
+$("#formbookingdetail").submit(function(e){
+       e.preventDefault();
+
+   var formdata = new FormData(this);
+
+       $.ajax({
+           url: "<?php echo base_url()?>Booking-detail/savebuktipembayaran",
+           type: "POST",
+           data: formdata,
+           mimeTypes:"multipart/form-data",
+           contentType: false,
+           cache: false,
+           processData: false,
+           dataType: "JSON",
+           success: function(data){
+             if (data.status == '200') {
+               alert("ok");
+             } else if (data.status == '204') {
+               alert("gagal");
+             }
+           },error: function(){
+               alert("Error");
+           }
+        });
+     });
 
 function cancelform()
 {
