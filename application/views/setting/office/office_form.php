@@ -46,6 +46,11 @@
                                         <label for="">Branch</label>
                                         <select id="i_branch" name="i_branch" class="form-control select2"></select>
                                       </div>
+                                      <div class="form-group">
+                                        <label for="">E-mail</label>
+                                        <input type="text" name="i_email" placeholder="" class="form-control"
+                                        value="<?php echo isset($office->office_email) ? $office->office_email : ""?>"/>
+                                      </div>
                                       <div class="margiv-top-10">
                                           <button type="submit" class="btn green"> Save Changes </button>
                                           <a href="<?php echo $action_close?>" class="btn default"> Cancel </a>

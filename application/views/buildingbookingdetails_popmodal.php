@@ -1,3 +1,9 @@
+<style media="screen">
+  #img_preview {
+    width: 200px;
+    height: auto;
+  }
+</style>
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title">Form Booking</h4>
@@ -55,8 +61,8 @@
                     <div class="form-group">
                       <label for="">Upload Image Bukti Pembayaran</label>
                       <br>
-                      <?php $img = isset($building_booking_details->building_img ) ? $building_booking_details->building_img : "img_not_found.png";?>
-                      <img src="<?php echo base_url('assets/img/buildings/'.$img)?>" alt="" id="img_preview">
+                      <?php $img = isset($building_booking_details->building_bukti_img) ? $building_booking_details->building_bukti_img : "img_not_found.png";?>
+                      <img src="<?php echo base_url('assets/img/bukti_booking/'.$img)?>" alt="" id="img_preview">
                       <input type="file" name="i_img" value="" onchange="readURL(this);">
                       <?php echo $img ?>
                     </div>

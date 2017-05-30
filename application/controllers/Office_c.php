@@ -60,12 +60,13 @@ class Office_c extends MY_Controller{
       $i_name = $this->input->post('i_name');
       $i_phone = $this->input->post('i_phone');
       $i_branch = $this->input->post('i_branch');
+      $i_email = $this->input->post('i_email');
       $data = array(
                       'office_name'   => $i_name,
                       'branch_id'     => $i_branch,
-                      'office_phone'  => $i_phone
+                      'office_phone'  => $i_phone,
+                      'office_phone'  => $i_email
                     );
-      var_dump($data);
       if ($i_id) {
         $where_office_detail_id = "office_detail_id = '$i_id'";
         $this->update_config('office_details', $data, $where_office_detail_id);

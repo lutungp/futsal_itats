@@ -129,6 +129,7 @@ class Customer_interface_c extends MY_Controller{
 
     $i_jam_1      = $this->input->post('i_jam_1');
     $i_jam_2      = $this->input->post('i_jam_2');
+    $data = array();
 
     $i_code       = $this->generate_code($i_tangggal, $i_jam_1, $i_jam_2, $i_building, $i_branch );
     $data_customer = array(
@@ -161,10 +162,12 @@ class Customer_interface_c extends MY_Controller{
                 );
 
     // $this->create_config('building_booking', $data_booking);
-
-
-    if ($this->create_config('building_booking', $data_booking))
-    {
+    $id = $this->Global_m->create_config('building_booking', $data_booking);
+    $wherebranchid = array(
+      'branch_id' => $i_branch,
+    );
+    $branch_mail = $this->Global_m->select_config_one('branches', 'branch_email', $wherebranchid);
+    if ($id){
       $this->send_email();
       $data['status'] = '200';
       $data['customer'] = $customer_id;
@@ -176,28 +179,27 @@ class Customer_interface_c extends MY_Controller{
 
   }
 
-  function send_email()
-  {
+  function send_email(){
+      $this->load->library('MyPHPMailer');
+      $fromEmail = "lntngp19@gmail.com";
+      $isiEmail = "Isi email tulis disini";
 
-    $this->load->library('email');
+      $mail = new PHPMailer();
+      $mail->IsHTML(true);    // set email format to HTML
+      $mail->IsSMTP();   // we are going to use SMTP
+      $mail->SMTPAuth   = true; // enabled SMTP authentication
+      $mail->SMTPSecure = "ssl";  // prefix for secure protocol to connect to the server
+      $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
+      $mail->Port       = 465;                   // SMTP port to connect to GMail
+      $mail->Username   = $fromEmail;  // alamat email kamu
+      $mail->Password   = "permanaday19";            // password GMail
+      $mail->SetFrom('info@yourdomain.com', 'noreply');  //Siapa yg mengirim email
+      $mail->Subject    = "Subjek email";
+      $mail->Body       = $isiEmail;
+      $toEmail = "lntngppp@gmail.com"; // siapa yg menerima email ini
+      $mail->AddAddress($toEmail);
 
-    $config = Array(
-        'protocol'  => 'smtp',
-        'smtp_host' => 'smtp.googlemail.com',
-        'smtp_port' => 465,
-        'smtp_user' => 'lntngp19@gmail.co',
-        'smtp_pass' => 'permanaday19',
-        'mailtype'  => 'html',
-        // 'charset'   => 'iso-8859-1'
-        'charset'   => 'utf-8'
-      );
-
-    $this->email->initialize($config);
-    $this->email->to('resi.raes@gmail.com');
-    $this->email->from('lntngp19@gmail.co', 'lntngp19@gmail.co');
-    $this->email->subject('JUDUL EMAIL (Teks)');
-    $this->email->message('Isi email ditulis disini');
-    $this->email->send();
+      $mail->Send();
 
   }
 
@@ -276,8 +278,7 @@ class Customer_interface_c extends MY_Controller{
     $this->load->view('customer_interface/customerformdetail', $data);
   }
 
-  function savebuktipembayaran()
-  {
+  function savebuktipembayaran(){
     $customer_id = $this->input->post('customer_id');
     $i_img = $_FILES["i_img"]["name"];
 
