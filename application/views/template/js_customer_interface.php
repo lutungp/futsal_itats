@@ -1,5 +1,6 @@
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/jquery.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/jQueryUI/jquery-ui-1.12.1/jquery-ui.min.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/js/function.js')?>" type="text/javascript"></script>
 
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap/js/bootstrap.min.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/global/plugins/js.cookie.min.js')?>" type="text/javascript"></script>

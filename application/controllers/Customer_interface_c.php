@@ -28,6 +28,24 @@ class Customer_interface_c extends MY_Controller{
     $this->load->view('customer_interface/customer_interface_view', $data);
   }
 
+  function getBranchdetail(){
+    $branch_id       = $this->input->post('branch_id');
+    $where_branch_id = array('branch_id' => $branch_id);
+      $qBranch       = $this->Global_m->select_config_array("branches", $where_branch_id);
+      $value         = $qBranch->row();
+      $data = array(
+        'branch_id'     => $value->branch_id,
+        'branch_name'   => $value->branch_name,
+        'branch_phone'  => $value->branch_phone,
+        'branch_address'=> $value->branch_address,
+        'branch_email'  => $value->branch_email,
+        'jambuka'       => date("H:m", $value->branch_hour_1),
+        'jamtutup'      => date("H:m", $value->branch_hour_2)
+     );
+
+    echo json_encode($data);
+
+  }
 
   // data-json
   function get_lapangan()
@@ -50,7 +68,8 @@ class Customer_interface_c extends MY_Controller{
                                 'status_building_name'  => $r_building->status_building_name,
                                 'status_building_id'    => $r_building->status_building_id,
                                 'status'                => $status_building,
-                                'branch'                => $r_building->branch
+                                'harga'                 => $r_building->building_price,
+                                'branch'                => $branch_id
                               );
 
     };
@@ -71,7 +90,6 @@ class Customer_interface_c extends MY_Controller{
                     'branch_id'   => $branch,
                     'action'      => "Customer_interface_c/save_booking"
                   );
-
       $this->load->view('customer_interface/popmodal_booking', $data);
   }
 

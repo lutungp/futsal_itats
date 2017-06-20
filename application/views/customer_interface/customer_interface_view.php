@@ -1,5 +1,58 @@
 <style media="screen">
 
+.descLokasi {
+    width: 240px;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.descLokasi .left img {
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+}
+
+.descLokasi .left {
+    margin: 0;
+    padding: 0;
+    float: left;
+    overflow: hidden;
+    width: 25px;
+    text-align: center;
+    height: 25px;
+}
+.descLokasi .right {
+    margin: 0;
+    padding: 0;
+    float: right;
+    overflow: hidden;
+    width: 200px;
+    line-height: 1.2em;
+    color: #333;
+}
+.descLokasi .right .title {
+    color: #333;
+    background: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+.descLokasi .right .subtitle {
+    font-size: 14px;
+    color: #555;
+}
+.clear {
+    clear: both;
+}
+
+.descLokasibody{
+  margin-left: 50px;
+}
+.normalPrice {
+    font-size: 28px;
+    font-weight: bold;
+}
 </style>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
         <!-- BEGIN CONTAINER -->
@@ -40,18 +93,61 @@
                                               </div>
                                           </div>
                                             <div class="col-md-12">
-                                              <center>
-                                                <div class="row">
-                                                  <div class="content4" >
+                                              <div class="row">
+                                                <br>
+                                                <div id="gelanggang_det" style="display: none;">
+                                                  <div class="portlet light bordered">
+                                                    <div class="portlet-body">
+                                                      <center>
+                                                        <br>
+                                                        <br>
+                                                        <div class="descLokasi" style="display: table-cell;text-align: left;">
+                                                          <div class="left">
+                                                            <img src="<?php echo base_url()?>assets/img/aqua-soccer-ball-md.png" width="25" height="25" alt="Hotel Icon">
+                                                          </div>
+                                                          <div class="right">
+                                                            <div class="title" id="i_gor"> </div>
+                                                            <div class="subtitle" id="i_alamat"> </div>
+                                                          </div>
+                                                          <div class="clear"></div>
+                                                        </div>
+                                                        <div class="descLokasi" style="display: table-cell;text-align: left;">
+                                                          <div class="left">
+                                                            <img src="<?php echo base_url()?>assets/img/phone-icon-blu.png" width="25" height="25" alt="Hotel Icon">
+                                                          </div>
+                                                          <div class="right">
+                                                            <div class="title" id=""> Telepon </div>
+                                                            <div class="subtitle" id="i_telp"> </div>
+                                                          </div>
+                                                          <div class="clear"></div>
+                                                        </div>
+                                                        <div class="descLokasi" style="display: table-cell;text-align: left;">
+                                                         <div class="left">
+                                                           <img src="<?php echo base_url()?>assets/img/Clock.png" width="25" height="25" alt="Hotel Icon">
+                                                         </div>
+                                                         <div class="right">
+                                                           <div class="title" id=""> Jam Operasional</div>
+                                                           <div class="subtitle" id="i_jamoperasional"> </div>
+                                                         </div>
+                                                         <div class="clear"></div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="row">
+                                                          <div class="content4" >
 
+                                                          </div>
+                                                        </div>
+                                                        <div class="row">
+                                                          <div class="" id="box_lapangan">
+
+                                                          </div>
+                                                        </div>
+                                                      </center>
+                                                    </div>
                                                   </div>
                                                 </div>
-                                                <div class="row">
-                                                  <div class="" id="box_lapangan">
-
-                                                  </div>
-                                                </div>
-                                              </center>
+                                              </div>
                                             </div>
                                       </div>
                                   </form>
@@ -94,9 +190,31 @@ $(document).ready(function(){
     var base_url = '<?php echo base_url();?>';
 
     $('body').on('change', '.select-add-branch', function (e) {
+        $.fn.getBranchdetail($(this));
         $.fn.getBuildings($(this));
         // e.preventDefault();
     });
+
+    $.fn.getBranchdetail = function (select) {
+      var branch_id = select.val();
+      var html = '';
+      $.ajax({
+        type      : "POST",
+        data      : {
+          branch_id : branch_id
+        },
+        dataType  : "JSON",
+        url       : "<?php echo base_url()?>customerBooking/getBranchdetail",
+        cache     : false,
+        success   : function(data){
+          $("#gelanggang_det").show(100);
+          document.getElementById("i_gor").innerHTML = data.branch_name;
+          document.getElementById("i_alamat").innerHTML = data.branch_address;
+          document.getElementById("i_telp").innerHTML = data.branch_phone;
+          document.getElementById("i_jamoperasional").innerHTML = data.jambuka +" - "+ data.jamtutup;
+        }
+      })
+    };
 
 
     $.fn.getBuildings = function (select, branch) {
@@ -119,16 +237,13 @@ $(document).ready(function(){
                 html = ''
                 // '<div class="status-lapangan">Available</div>'
                         + '<div class="col-md-4" style="padding-top:10px;">'
-                        + '<div class="">'
-                        + '<div class="">'
                         + '<div class="thumbnail">'
                         + '<img src="'+value.path+value.building_img+'" alt="" style="width: 100%; height: 200px;">'
                         + '<div class="caption">'
                         + status
                         + '<h3>'+building_name+'</h3>'
                         + '<p><a type="button" data-id="'+building_id+'" data-branch-id="'+branch+'" class="btn blue btn-booking"> Booking </a></p>'
-                        + '</div>'
-                        + '</div>'
+                        + '<div class="normalPrice"> Rp'+toRp(value.harga)+',00 / jam </div>'
                         + '</div>'
                         + '</div>'
                         + '</div>';
