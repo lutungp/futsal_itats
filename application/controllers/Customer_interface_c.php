@@ -210,7 +210,7 @@ class Customer_interface_c extends MY_Controller{
       $mail->Host       = "smtp.gmail.com";      // setting GMail as our SMTP server
       $mail->Port       = 465;                   // SMTP port to connect to GMail
       $mail->Username   = $fromEmail;  // alamat email kamu
-      $mail->Password   = "permanaday19";            // password GMail
+      $mail->Password   = "";            // password GMail
       $mail->SetFrom('info@yourdomain.com', 'noreply');  //Siapa yg mengirim email
       $mail->Subject    = "Subjek email";
       $mail->Body       = $isiEmail;

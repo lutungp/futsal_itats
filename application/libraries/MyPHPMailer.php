@@ -2,7 +2,7 @@
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class MyPHPMailer {
     public function MyPHPMailer() {
-        require_once('PHPMailer-Master/PHPMailerAutoload.php');
+        require_once('PHPMailer-master/PHPMailerAutoload.php');
     }
 }
 ?>
