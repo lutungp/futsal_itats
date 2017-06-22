@@ -41,8 +41,7 @@
     </head>
     <body class="login">
       <div class="logo">
-          <a href="index.html">
-              <img src="<?php echo base_url('assets/metronic_v4.5.6/theme/assets/pages/img/logo-big-white.png')?>" style="height: 17px;" alt="" /> </a>
+
       </div>
         <div class="content">
                 <div class="alert alert-danger">

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-  class Ruangan_c extends My_controller{
+  class Ruangan_c extends My_Controller{
 
     public $load_plugin_head;
     public $load_plugin_foot;
@@ -12,7 +12,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       parent::__construct();
         $this->load->model('Ruangan_m');
 
-        $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.css";
         $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css";
         $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css";
 
@@ -70,43 +69,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                      'branches'           => $this->select_config('branches', $where),
                       );
 
+      $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/css/jquery.Jcrop.min.css";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.color.js";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.Jcrop.min.js";
       $this->get_page($data, $action, $this->load_plugin_head, $this->load_plugin_foot);
     }
 
     function add_ruangan()
     {
-      $i_id = $this->input->post('i_id');
-      $i_name = $this->input->post('i_name');
-      $i_kategori = $this->input->post('i_kategori');
+      // $i_id = $this->input->post('i_id');
+      // $i_name = $this->input->post('i_name');
+      // $i_kategori = $this->input->post('i_kategori');
       $i_img = $this->input->post('i_img');
-      $i_status = $this->input->post('i_status');
-      $i_hour = $this->input->post('i_hour');
-      $i_harga_jual = $this->input->post('i_harga_jual');
-      $i_branch = $this->input->post('i_branch');
-
-
-      $i_mg_file = isset($_FILES['i_img']['name']) ? $_FILES['i_img']['name']: " ";
-
-      $config['upload_path']          = './assets/img/buildings/';
-      $config['allowed_types']        = 'gif|jpg|png|exe|xls|doc|docx|xlsx|rar|zip';
-      $config['max_size']             = '8192';
-      $config['remove_spaces']        = TRUE;  //it will remove all spaces
-
-      $this->load->library('upload', $config);
-
-      $data = array(
-                    'building_name'       => $i_name,
-                    'building_img'        => $i_mg_file,
-                    'building_status'     => $i_status,
-                    'building_hour_book'  => $i_hour,
-                    'building_price'      => $i_harga_jual,
-                    'branch'              => $i_branch
-                  );
-
-
-      if ($i_mg_file) { $this->upload->do_upload('i_img');}
-      $this->create_config('buildings', $data);
-      redirect('lapangan_list');
+      $destination = "./assets/img/buildings/";
+      //Get uploaded image file it's temporary name
+      $image_base64 = $this->input->post('cropped_image');
+      $image_base64 = str_replace("data:image/png;base64,", "", $image_base64);
+      $image_base64 = str_replace(" ", "+", $image_base64);
+      $image         = base64_decode($image_base64);
+      var_dump($image);
+      // echo $image_tmp_name;
+      // $i_status = $this->input->post('i_status');
+      // $i_hour = $this->input->post('i_hour');
+      // $i_harga_jual = $this->input->post('i_harga_jual');
+      // $i_branch = $this->input->post('i_branch');
+      //
+      //
+      // $i_mg_file = isset($_FILES['i_img']['name']) ? $_FILES['i_img']['name']: " ";
+      //
+      // $config['upload_path']          = './assets/img/buildings/';
+      // $config['allowed_types']        = 'gif|jpg|png|exe|xls|doc|docx|xlsx|rar|zip';
+      // $config['max_size']             = '8192';
+      // $config['remove_spaces']        = TRUE;  //it will remove all spaces
+      // //
+      // $this->load->library('upload', $config);
+      // //
+      // // $data = array(
+      // //               'building_name'       => $i_name,
+      // //               'building_img'        => $i_mg_file,
+      // //               'building_status'     => $i_status,
+      // //               'building_hour_book'  => $i_hour,
+      // //               'building_price'      => $i_harga_jual,
+      // //               'branch'              => $i_branch
+      // //             );
+      // //
+      // //
+      // if ($image_tmp_name) { $this->upload->do_upload('cropped_image');}
+      // $this->create_config('buildings', $data);
+      // redirect('lapangan_list');
     }
 
     function edit_ruangan($id)
@@ -133,10 +143,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       );
       $building_details   = $this->select_config('buildings', $where_building_id)->result();
 
-      $this->get_page($data, $action);
+      $this->load_plugin_head[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/css/jquery.Jcrop.min.css";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.color.js";
+      $this->load_plugin_foot[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.Jcrop.min.js";
+      $this->get_page($data, $action, $this->load_plugin_head, $this->load_plugin_foot);
     }
 
-    function update_ruangan(){
+    function update_ruangan()
+    {
 
     	$i_id = $this->input->post('i_id');
     	$i_name = $this->input->post('i_name');
@@ -153,7 +167,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	);
 
       if ($i_mg_file) {
-        echo $i_mg_file;
         $data = array(
       		'building_name'       => $i_name,
           'building_img'        => $i_mg_file,
@@ -191,7 +204,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	redirect('lapangan_list');
     }
 
-    function delete_ruangan($id){
+    function delete_ruangan($id)
+    {
       $where = array(
     		'building_id' => $id
     	);
@@ -224,7 +238,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
       echo json_encode($data);
     }
-
 
     function popmodal_ruangan_konversi($satuan_utama)
     {

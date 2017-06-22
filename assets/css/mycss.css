@@ -59,6 +59,61 @@ tr.text-center {
     color: #ff5e5e;
   }
 
+
+  .descLokasi {
+      width: 240px;
+      margin: 10px 0 0;
+      padding: 0;
+  }
+
+  .descLokasi .left img {
+      width: 25px;
+      height: 25px;
+      overflow: hidden;
+  }
+
+  .descLokasi .left {
+      margin: 0;
+      padding: 0;
+      float: left;
+      overflow: hidden;
+      width: 25px;
+      text-align: center;
+      height: 25px;
+  }
+  .descLokasi .right {
+      margin: 0;
+      padding: 0;
+      float: right;
+      overflow: hidden;
+      width: 200px;
+      line-height: 1.2em;
+      color: #333;
+  }
+  .descLokasi .right .title {
+      color: #333;
+      background: none;
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+      font-size: 16px;
+  }
+  .descLokasi .right .subtitle {
+      font-size: 14px;
+      color: #555;
+  }
+  .clear {
+      clear: both;
+  }
+
+  .descLokasibody{
+    margin-left: 50px;
+  }
+  .normalPrice {
+      font-size: 28px;
+      font-weight: bold;
+  }
+
   @media screen and (min-width: 300px) and (max-width: 390px){
 
       .page-content {

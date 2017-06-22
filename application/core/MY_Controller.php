@@ -182,4 +182,44 @@ class MY_Controller extends CI_Controller{
     echo json_encode($data);
   }
 
+  // datatable
+  function loadDatatablelugin_header(){
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/css/jquery.Jcrop.min.css";
+
+    return $load_plugin;
+  }
+
+  function loadDatatablelugin_footer(){
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/scripts/datatable.js";
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/datatables.min.js";
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js";
+
+    return $load_plugin;
+  }
+  // timepicker
+  function loadTimepickerplugin_header(){
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css";
+
+  }
+
+  function loadTimepickerplugin_footer(){
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js";
+
+    return $load_plugin;
+  }
+  // jcrop
+  function loadJcropplugin_header(){
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/css/jquery.Jcrop.min.css";
+    $load_plugin[] = base_url()."assets/metronic_v4.5.6/theme/assets/pages/css/image-crop.min.css";
+
+    return $load_plugin;
+  }
+
+  function loadJcropplugin_footer(){
+    $load_plugin = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.color.js";
+    $load_plugin = base_url()."assets/metronic_v4.5.6/theme/assets/global/plugins/jcrop/js/jquery.Jcrop.min.js";
+
+    return $load_plugin;
+  }
+
 }

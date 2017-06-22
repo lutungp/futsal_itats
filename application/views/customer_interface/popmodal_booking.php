@@ -2,6 +2,12 @@
 .datepicker.dropdown-menu {
     /*left: 802.837px!important;*/
   }
+  .select2-container--bootstrap .select2-results__option[aria-disabled=true]{
+    background-color: #ffeb00;
+    color : #fff;
+    font-weight: bold;
+  }
+
 </style>
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -213,18 +219,22 @@
     }
 
   $("#booking_form").submit(function(e) {
+    document.getElementById('ajaxloader').style.display = "block";
 
     $.ajax({
            type     : "POST",
            url      : $("#booking_form").attr('action'),
            data     : $("#booking_form").serialize(),
            dataType : "json",
+           cache    : false,
            success  : function(data)
            {
             //  alert();
              $('#booking_popmodal').modal('hide');
              bookingstorage = [];
+             document.getElementById('ajaxloader').style.display = "none";
           },error   : function(){
+            document.getElementById('ajaxloader').style.display = "none";
             alert("error");
           }
          });

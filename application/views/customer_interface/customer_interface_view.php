@@ -1,58 +1,34 @@
 <style media="screen">
 
-.descLokasi {
-    width: 240px;
-    margin: 10px 0 0;
-    padding: 0;
-}
+  .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      z-index: 99999;
+      position: absolute;
+  }
 
-.descLokasi .left img {
-    width: 25px;
-    height: 25px;
-    overflow: hidden;
-}
+  #ajaxloader.loader {
+    top: 50%;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    display: none;
+  }
 
-.descLokasi .left {
-    margin: 0;
-    padding: 0;
-    float: left;
-    overflow: hidden;
-    width: 25px;
-    text-align: center;
-    height: 25px;
-}
-.descLokasi .right {
-    margin: 0;
-    padding: 0;
-    float: right;
-    overflow: hidden;
-    width: 200px;
-    line-height: 1.2em;
-    color: #333;
-}
-.descLokasi .right .title {
-    color: #333;
-    background: none;
-    padding: 0;
-    margin: 0;
-    font-weight: bold;
-    font-size: 16px;
-}
-.descLokasi .right .subtitle {
-    font-size: 14px;
-    color: #555;
-}
-.clear {
-    clear: both;
-}
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
 
-.descLokasibody{
-  margin-left: 50px;
-}
-.normalPrice {
-    font-size: 28px;
-    font-weight: bold;
-}
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
 </style>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-md">
         <!-- BEGIN CONTAINER -->
@@ -92,6 +68,7 @@
                                                   <span class="help-block"> Pilih Gelanggang. </span>
                                               </div>
                                           </div>
+                                          <div class="loader" id="ajaxloader"></div>
                                             <div class="col-md-12">
                                               <div class="row">
                                                 <br>
